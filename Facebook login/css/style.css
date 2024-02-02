@@ -1,0 +1,251 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica';
+}
+.center{
+    max-width: 100%;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+hr{
+    margin: 22px 0 24px;
+    border: 0.5px solid #dadde1;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+
+
+/* --- Informação SPAN --- */
+body > span {
+    background-color: #1c1e21;
+    color: white;
+    width: 100%;
+    display: block;
+    padding: 10px 20px;
+}
+body > span a{
+    color: unset;
+}
+
+
+/* --- Section - Login --- */
+section.pag-login{
+    padding: 82px 40px 160px;
+    background: #f0f2f5;
+}
+section.pag-login .center{
+    width: 984px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 396px;
+    column-gap: 50px;
+}
+#logo{
+    height: 70px;
+    margin: 0 0 -5px -20px;
+}
+
+h2{
+    font-size: 28px;
+    font-weight: 400;
+    color: #1c1e21;
+}
+h3{
+    font-size: 15px;
+    font-weight: 300;
+    margin: 3px 0 26px;
+    color: #606770;
+}
+
+
+.usuario, .novo-usuario{
+    width: 160px;
+    border-radius: 10px;
+    border: 1px #dddfe2 solid;
+    display: inline-block;
+    margin-right: 14px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+.usuario:hover, .novo-usuario:hover{
+    box-shadow: #8a8d91 1px 1px 10px 0px;
+}
+
+.foto-perfil{
+    height: 160px;
+    background-color: #f5f6f7;
+    border-radius: 10px;
+}
+
+.usuario img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 10px 0 0;
+}
+.usuario .nome, .novo-usuario .nome{
+    border-radius: 0 0 10px 10px;
+    background-color: white;
+    font-size: 18px;
+    text-align: center;
+    padding: 12px;
+    color: #4b4f56;
+}
+
+.novo-usuario .foto-perfil p{
+    position: relative;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: inline-block;
+
+    font-size: 40px;
+    padding: 0px 12px;
+    background-color: #1877f2;
+    color: white;
+    border-radius: 100%;
+}
+
+.novo-usuario .nome{
+    color: #1877f2;
+}
+
+/* --- Login --- */
+form{
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px;
+    padding-bottom: 24px;
+    text-align: center;
+    box-shadow: #dadde1 1px 3px 10px 3px;
+    margin: 0 auto;
+    margin-top: 50px;
+    max-width: 400px;
+}
+input{
+    display: block;
+    padding: 15px 16px;
+    width: 100%;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 1px solid #dddfe2;
+    outline: none;
+    font-size: 17px;
+}
+input:focus{
+    outline: #1877f2 1px solid;
+}
+
+input:focus::placeholder{
+    color: #ccd0d5;    
+}
+
+
+input[type="submit"]{
+    background-color: #1877f2;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 12px 16px;
+}
+input[type="submit"]:hover{
+    background-color: #166fe5;
+}
+
+form a{
+    color: #1877f2;
+    font-size: 14px;
+}
+
+form button{
+    background-color: #42b72a;
+    color: white;
+    font-size: 17px;
+    padding: 14px 16px;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid #ccd0d5;
+    font-weight: bold;
+    cursor: pointer;
+}
+form button:hover{
+    background-color: #36a420;
+}
+
+.area-login p{
+    margin-top: 28px;
+    color: #1c1e21;
+    font-size: 14px;
+    text-align: center;
+}
+p a{
+    color: black;
+    font-weight: bold;
+}
+
+/* --- Section - Outros --- */
+footer{
+    background-color: white;
+    padding: 20px 20px 0;
+}
+
+footer li{
+    font-size: 12px;
+    color: #8a8d91;
+    margin-right: 10px;
+    display: inline-block;
+}
+footer li.selected{
+    color: #737373;
+}
+footer li a{
+    color: unset;
+}
+
+footer li button{
+    padding: 0 5px;
+    font-size: 20px;
+    color: #626a77;
+}
+
+footer hr{
+    margin: 10px 0;
+}
+
+footer .outras-opcoes li{
+    margin-right: 20px;
+}
+
+footer p{
+    font-size: 12px;
+    color: #8a8d91;
+    margin: 20px 0;
+}
+
+
+/* --- RESPONSIVO --- */
+@media screen and (max-width: 900px){
+    section.pag-login{
+        padding: 20px 20px 100px;
+    }
+    section.pag-login .center{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .contas-abertas{
+        display: initial;
+        text-align: center;
+    }
+    .novo-usuario .foto-perfil p{
+        left: 0%;
+        transform: translate(0%, -50%);
+    }
+}
