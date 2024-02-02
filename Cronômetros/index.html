@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <!-- Personalização -->
+    <title>Cronômetros | Nicchon Sanchez</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <meta name="theme-color" content="#262626">
+
+    <!-- Config -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="title" content="Cronômetros">
+    <meta name="author" content="Nicchon Sanchez Pinto">
+    <meta property="og:image" itemprop="image" content="http://nicchon.com/images/icone-meta.png">
+    <meta name="description" content="Aplicativo de cronômetro regressivo">
+    <meta name="keywords" content="cronômetro regressivo,cronometros">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Link para ICONS Fa fas-etc --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <section class="cronometros">
+        <header>
+            <h2>Cronômetros</h2>
+        </header>
+
+        <section class="cronometros-grupo">
+
+            <article class="cronometro" id="000-000-000">
+                <header>
+                    <div onclick="ativarCronometro()">
+                    
+                    </div>
+                    <div class="excluir" onclick="ativarCronometro('excluir')">&times;</div>
+                    <div class="titulo">
+                        <input style="display: none;" type="text" name="novoNome" value="">
+                        <h2>
+                            <span>Cronômetro</span>
+                            <i class="btn-editar fa fa-pencil-square-o" aria-hidden="true" onclick="ativarCronometro('editarNome')"></i>
+                        </h2>
+                    </div>
+                    <!-- /.titulo -->
+                    <h4 class="subtitulo">Código: 000-000-000</h4>
+                    <!-- /.subtitulo -->
+                </header>
+                <section>
+                    <div class="tempo">
+                        <input style="display: none;" type="text" name="novoNome" value="">
+                        <span>60</span>
+                        <i class="btn-editar fa fa-pencil-square-o" aria-hidden="true" onclick="ativarCronometro('editarTempo')"></i>
+                    </div>
+                    <div class="botoes">
+                        <button onclick="ativarCronometro('iniciar')" class="iniciar">Iniciar</button>
+                        <button onclick="ativarCronometro('pausar')" class="pausar">Pausar</button>
+                        <button onclick="ativarCronometro('zerar')" class="zerar">Zerar</button>
+                    </div>
+                </section>
+            </article>
+            <!-- /.cronometro -->
+
+            <article onclick="criarBox()" id="adicionarCronometro" class="adicionar cronometro">
+                <h2>+</h2>
+            </article>
+            <!-- /.cronometros.adicionar -->
+        </section>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

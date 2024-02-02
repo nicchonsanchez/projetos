@@ -1,0 +1,124 @@
+/* Framework */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    background: #000;
+    color: white;
+}
+
+
+
+
+
+/* Scrollbar */
+::-webkit-scrollbar-track {
+    background-color: #232323;
+}
+
+::-webkit-scrollbar {
+    background-color: #232323;
+    width: 10px;	
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-track-piece {
+    background-color: #232323;
+}
+
+
+
+
+section.cronometros{
+    width: 96%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 50px 2%;
+}
+
+section.cronometros > header{
+    margin-bottom: 30px;
+}
+section.cronometros > header h2{
+    font-size: 2.6em;
+    font-weight: 300;
+}
+
+section.cronometros .cronometros-grupo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    gap: 20px
+}
+
+article.cronometro{
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    padding: 32px 32px 46px;
+    background-image: linear-gradient(85deg, #434343, #262626);
+    box-shadow: -16px 0 32px rgba(0,0,0,0.5);
+    border-radius: 8px;
+    transition: transform 250ms;
+}
+
+article.cronometro .excluir{
+    position: absolute;
+    cursor: pointer;
+    top: 0px;
+    right: 10px;
+    font-size: 2em;
+}
+article.cronometro header{
+    margin-bottom: 20px;
+}
+article.cronometro header .titulo h2{
+    font-size: 1.4em;
+    display: inline;
+}
+article.cronometro i.btn-editar{
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 5px;
+}
+article.cronometro header .subtitulo{
+    font-weight: 300;
+    font-size: 0.8em;
+}
+
+article.cronometro .tempo{
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+article.cronometro .botoes button{
+    cursor: pointer;
+    padding: 10px 10px;
+    background-color: #3a3a3a;
+    color: white;
+    border: 1px #212121 solid;
+    border-radius: 4px;
+}
+
+article.adicionar.cronometro{
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+article.adicionar h2{
+    font-size: 3em;
+    font-weight: 100;
+}

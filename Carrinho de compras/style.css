@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html,body{
+    height: 100%;
+}
+
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.btn-remove{
+    cursor: pointer;
+    float: right;
+    clear: both;
+}
+
+
+.sect-carrinho{
+    background-color: #e2e7ee;
+    padding: 30px 2%;
+}
+
+.carrinho{
+    background: white;
+    border-radius: 4px;
+    max-width: 350px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.carrinho h1{
+    margin-bottom: 10px;
+    font-weight: 100;
+    font-size: 1.6em;
+}
+
+ul.lista-itens{
+    list-style: none;
+    background: white;
+    border-radius: 4px;
+    width: 300px;
+    margin-bottom: 20px;
+}
+ul.lista-itens li{
+    padding: 10px 10px;
+    border-radius: 4px;
+    box-shadow: 5px 3px 10px 0px #e2e7ee;
+    border: 1px solid #e8e9ea;
+    margin-bottom: 5px;
+}
+
+form .grid{
+    display: grid;
+    grid-template-columns: 1fr 80px;
+    gap: 10px;
+}
+form input[type="text"]{
+    transition: 1s;
+    padding: 10px;
+    border: 0;
+    border-bottom: 1px solid #0f53c2;
+}
+form input[type="text"]:hover, form input[type="text"]:focus{
+    outline: 0;
+    border-bottom: 1px solid #15894d;
+    box-shadow: 5px 3px 10px 0px #e2e7ee;
+    background: #f3f5f7;
+}
+#addItem{
+    transition: 1s;
+    background-color: #0f53c2;
+    color: white;
+    padding: 10px;
+    border: 0;
+    border-radius: 4px;
+}
+
+#addItem:hover{
+    background-color: #15894d;
+}

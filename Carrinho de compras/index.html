@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de compra com AngularJS</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    
+<div ng-app="myShoppingList" ng-controller="myCtrl">
+
+    <section class="sect-carrinho">
+        <div class="container">
+
+            <article class="carrinho">
+                <h1>Meu carrinho</h1>
+                <ul class="lista-itens">
+                    <li ng-repeat="x in produtos">
+                        {{x}}
+                        <span class="btn-remove" ng-click="removeItem($index)">&times;</span>
+                    </li>
+                </ul>
+                <form action="" method="get">
+                    <div class="grid">
+                        <input type="text" name="addItem" ng-model="itemNovo" required>
+                        <input type="submit" ng-click="addItem()" id="addItem" value="Adicionar">
+                    </div>
+                </form>
+            <article>
+
+        </div>
+    </section>
+
+</div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

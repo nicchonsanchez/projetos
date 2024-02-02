@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Personalização -->
+    <title>Pedra, papel ou tesoura!</title>
+    <link rel="shortcut icon" href="scisor.png" type="image/x-icon">
+    <meta name="theme-color" content="rgb(33, 5, 44)">
+
+    <!-- Config -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="title" content="Pedra, papel ou tesoura?">
+    <meta name="author" content="Nicchon Sanchez Pinto">
+    <meta property="og:image" itemprop="image" content="http://nicchon.com/images/icone-meta.png">
+    <meta name="description" content="Jogue agora mesmo! Pedra, papel ou tesoura?">
+    <meta name="keywords" content="Pedra papel ou tesoura,jogo,jogos,jogo para 2,jogos para 2,jogo de criança">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        /* GERAL */
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        }
+        html,body{
+            height: 100%;
+            background-color: rgb(23, 2, 31);
+            color: rgb(238, 230, 241);
+        }
+        a{
+            color: unset;
+            text-decoration: none;
+        }
+        ul{
+            list-style: none;
+        }
+        .jogo-para-2,
+        #tabela ul.jogo-para-2
+        {
+            display: none;
+        }
+        #jogador1{
+            border: 1px solid green;
+        }
+
+
+
+        /* CABEÇALHO */
+        header{
+            padding: 30px 2%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo{
+            cursor: pointer;
+        }
+        header h2{
+            font-size: 1.6em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        header nav{
+            display: flex;
+            justify-content: end;
+        }
+        header ul{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: end;
+            gap: 10px;
+        }
+        header ul li{
+            transition: 0.3s;
+            padding: 10px;
+            background-color: rgb(33, 5, 44);
+            border-radius: 4px;
+            box-shadow: #0c0110 2px 2px 4px 0px;
+        }
+        header ul li:hover{
+            background-color: rgb(44, 7, 58);
+            transform: translate(-1px,-1px);
+        }
+
+
+
+        /* PLACAR */
+        #placar{
+            padding: 10px 2%;
+            background-color: rgb(17, 1, 25);
+            /*display: flex;
+            justify-content: space-around;*/
+        }
+        #tabela ul{
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+        }
+        #tabela li{
+            width: 200px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: rgb(33, 5, 44);
+            box-shadow: #0c0110 2px 2px 4px 0px;
+            text-align: center;
+        }
+        #tabela li span.resultado{
+            display: block;
+            text-align: center;
+            font-size: 2em;
+            border-radius: 4px;
+            margin-top: 5px;
+            background-color: #c8cfdd;
+            color: #21052c;
+        }
+
+
+
+        /* JOGO */
+        #jogo{
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 2%;
+        }
+        #jogo .jogador{
+            border-radius: 4px;
+            padding: 10px 30px;
+        }
+        #jogo .jogador li{
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        #jogo #computador li{
+            cursor: not-allowed;
+        }
+        #jogo .jogador img{
+            transition: 0.3s;
+            width: 100px;
+            opacity: 0.2;
+        }
+        #jogo .jogador img:hover{
+            opacity: 1;
+        }
+        #jogo .jogador figcaption{
+            text-align: center;
+        }
+
+
+
+        /* RODAPÉ */
+        footer{
+            background-color: rgb(17, 1, 25);
+            color: #919191;
+            text-align: center;
+            padding: 20px 2%;
+        }
+        footer a:hover{
+            color: white;
+            text-decoration: underline;
+        }
+
+
+
+        /* RESPONSIVO */
+        @media screen and (max-width: 768px) {
+            header{
+                display: initial;
+                align-items: center;
+            }
+            header nav{
+                justify-content: center;
+            }
+            header nav ul{
+                justify-content: center;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="logo"><h2>Pedra, papel ou tesoura!</h2></div>
+        <nav>
+            <ul>
+                <a href="#1jogador"><li>1 Jogador</li></a>
+                <a href="#2jogadores"><li>2 Jogadores</li></a>
+                <a onclick="reiniciar()" href="#"><li class="reiniciar">Reiniciar jogo</li></a>
+            </ul>
+        </nav>
+    </header>
+    <section id="placar">
+        <article id="tabela">
+            <ul class="jogo-para-1">
+                <li><span class="nome">Você</span><span class="resultado">0</span></li>
+                <li><span class="nome">Computador</span><span class="resultado">0</span></li>
+            </ul>
+            <ul class="jogo-para-2">
+                <li><span class="nome">Jogador(a) 1</span><span class="resultado">0</span></li>
+                <li><span class="nome">Jogador(a) 2</span><span class="resultado">0</span></li>
+            </ul>
+        </article>
+        <!-- /#tabela -->
+    </section>
+    <!-- /#placar -->
+
+    <section id="jogo">
+        <article class="jogador jogo-para-1" id="voce">
+            <ul>
+                <li class="option" opcao="pedra">
+                    <figure>
+                        <img src="rock.png" alt="Pedra">
+                        <figcaption>Opção pedra</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="papel">
+                    <figure>
+                        <img src="paper.png" alt="Papel">
+                        <figcaption>Opção papel</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="tesoura">
+                    <figure>
+                        <img src="scisor.png" alt="Tesoura">
+                        <figcaption>Opção tesoura</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+            </ul>
+        </article>
+        <!--/#jogador-->
+
+        <article class="jogador jogo-para-1" id="computador">
+            <ul>
+                <li class="option" opcao="pedra">
+                    <figure>
+                        <img src="rock.png" alt="Pedra">
+                        <figcaption>Opção pedra</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="papel">
+                    <figure>
+                        <img src="paper.png" alt="Papel">
+                        <figcaption>Opção papel</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="tesoura">
+                    <figure>
+                        <img src="scisor.png" alt="Tesoura">
+                        <figcaption>Opção tesoura</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+            </ul>
+        </article>
+        <!--/#computador-->
+
+        <article class="jogador jogo-para-2" id="jogador1">
+            <ul>
+                <li class="option" opcao="pedra">
+                    <figure>
+                        <img src="rock.png" alt="Pedra">
+                        <figcaption>Opção pedra</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="papel">
+                    <figure>
+                        <img src="paper.png" alt="Papel">
+                        <figcaption>Opção papel</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="tesoura">
+                    <figure>
+                        <img src="scisor.png" alt="Tesoura">
+                        <figcaption>Opção tesoura</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+            </ul>
+        </article>
+        <!--/#jogador-->
+
+        <article class="jogador jogo-para-2" id="jogador2">
+            <ul>
+                <li class="option" opcao="pedra">
+                    <figure>
+                        <img src="rock.png" alt="Pedra">
+                        <figcaption>Opção pedra</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="papel">
+                    <figure>
+                        <img src="paper.png" alt="Papel">
+                        <figcaption>Opção papel</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+                <li class="option" opcao="tesoura">
+                    <figure>
+                        <img src="scisor.png" alt="Tesoura">
+                        <figcaption>Opção tesoura</figcaption>
+                    </figure>
+                </li>
+                <!--/.option-->
+            </ul>
+        </article>
+        <!--/#computador-->
+    </section>
+    <!--/#jogo-->
+    <footer>
+        <p>Todos os direitos reservados | Criado por <a target="_blank" href="http://nicchon.com">nicchon.com</a></p>
+    </footer>
+
+    <script>
+        /*
+            MENU
+        */
+        $('a[href="#1jogador"]').click(function(){
+            $('.jogo-para-1').css('display','block');
+            $('ul.jogo-para-1').css('display','flex');
+            $('.jogo-para-2').css('display','none');
+            reiniciar();
+        })
+        $('a[href="#2jogadores"]').click(function(){
+            $('.jogo-para-1').css('display','none');
+            $('.jogo-para-2').css('display','block');
+            $('ul.jogo-para-2').css('display','flex');
+            reiniciar();
+        })
+
+
+        /*
+            JOGO
+        */
+        var pontuacaoJogador;
+        var pontuacaoComputador;
+        var pontuacaoJogador1;
+        var pontuacaoJogador2;
+
+        var jogadaOponente;
+        var jogadaJogador1;
+        var jogadaJogador2;
+
+        var resultado;
+        var vezdejogar = "jogador1";
+        iniciarJogo();
+
+        // Iniciar / Reiniciar jogo
+        function iniciarJogo(){
+            pontuacaoJogador = 0;
+            pontuacaoComputador = 0;
+            pontuacaoJogador1 = 0;
+            pontuacaoJogador2 = 0;
+
+            jogadaOponente = 0;
+            jogadaJogador1 = 0;
+            jogadaJogador2 = 0;
+
+            resultado = 0;
+            vezdejogar = "jogador1";
+            $('#jogador1').css('border','1px solid green');
+            atualizarPlacar();
+        }
+
+        // Atualizar placar
+        function atualizarPlacar(){
+            $('#tabela ul.jogo-para-1 li:nth-child(1) span.resultado').html(pontuacaoJogador);
+            $('#tabela ul.jogo-para-1 li:nth-child(2) span.resultado').html(pontuacaoComputador);
+            $('#tabela ul.jogo-para-2 li:nth-child(1) span.resultado').html(pontuacaoJogador1);
+            $('#tabela ul.jogo-para-2 li:nth-child(2) span.resultado').html(pontuacaoJogador2);
+            setTimeout(()=>{
+                $('#jogo .jogador img').css('opacity', '0.2');
+            },1000);
+        }
+
+        // Reiniciar jogo
+        function reiniciar(){
+            iniciarJogo()
+            $('#jogo .jogador .option').find('img').css('opacity',0.2);
+            alert("Jogo reiniciado!")
+        }
+
+        /*
+            Jogando contra outro jogador
+        */
+       // Jogador 1
+        $('#jogo #jogador1 .option').click(function(){
+            if(vezdejogar == "jogador1"){
+                $('#jogo .jogador .option').find('img').css('opacity', 0.2);
+                $('#jogador1').css('border','0px');
+                $('#jogador2').css('border','1px solid green');
+                jogadaJogador1 = $(this).attr('opcao');
+                vezdejogar = "jogador2";
+                setTimeout(()=>{
+                    alert('Opção selecionada!\nAgora é a vez do(a) jogador(a) 2.')
+                },10);
+            } else {
+                alert("Não é sua vez de jogar!")
+            }
+        });
+
+        // Jogador 2
+        $('#jogo #jogador2 .option').click(function(){
+            if(vezdejogar == "jogador2"){
+                $('#jogo .jogador .option').find('img').css('opacity', 0.2);
+                $('#jogador2').css('border','0px');
+                jogadaJogador2 = $(this).attr('opcao');
+                vezdejogar = "jogador1";
+
+                setTimeout(()=>{
+                    alert('Prontos para o resultado?');
+                    verificarResultado();
+                },10);
+            } else {
+                alert("Não é sua vez de jogar!");
+            }
+        });
+
+        function verificarResultado(){
+            if(jogadaJogador1 == "pedra"){ // Pedra
+                if(jogadaJogador2 == "pedra"){
+                    resultado = "empate";
+                }
+                else if(jogadaJogador2 == "papel"){
+                    resultado = "jogador2ganhou";
+                }
+                else if(jogadaJogador2 == "tesoura"){
+                    resultado = "jogador1ganhou";
+                }
+            } else if(jogadaJogador1 == "papel"){ // Papel
+                if(jogadaJogador2 == "pedra"){
+                    resultado = "jogador1ganhou";
+                }
+                else if(jogadaJogador2 == "papel"){
+                    resultado = "empate";
+                }
+                else if(jogadaJogador2 == "tesoura"){
+                    resultado = "jogador2ganhou";
+                }
+            } else if(jogadaJogador1 == "tesoura"){ // Tesoura
+                if(jogadaJogador2 == "pedra"){
+                    resultado = "jogador2ganhou";
+                }
+                else if(jogadaJogador2 == "papel"){
+                    resultado = "jogador1ganhou";
+                }
+                else if(jogadaJogador2 == "tesoura"){
+                    resultado = "empate";
+                }
+            }
+
+            // Mostrar a jogada
+            $(`#jogador1 li[opcao="${jogadaJogador1}"]`).find('img').css('opacity','1');
+            $(`#jogador2 li[opcao="${jogadaJogador2}"]`).find('img').css('opacity','1');
+
+            // Alteração do placar
+            setTimeout(()=>{
+                if(resultado == 'jogador1ganhou'){
+                    pontuacaoJogador1++;
+                    alert(`Jogador(a) 1 ganhou!\n\nJogador(a) 1 jogou: ${jogadaJogador1}\nJogador(a) 2 jogou: ${jogadaJogador2}`);
+                } else if(resultado == 'jogador2ganhou'){
+                    pontuacaoJogador2++;
+                    alert(`Jogador(a) 2 ganhou!\n\nJogador(a) 1 jogou: ${jogadaJogador1}\nJogador(a) 2 jogou: ${jogadaJogador2}`);
+                } else if(resultado == 'empate'){
+                    alert(`Vocês empataram!\n\nJogador(a) 1 jogou: ${jogadaJogador1}\nJogador(a) 2 jogou: ${jogadaJogador2}`);
+                }
+            },1000)
+            
+            setTimeout(()=>{
+                $('#jogador1').css('border','1px solid green');
+                atualizarPlacar();
+            },2000);
+        }
+
+
+
+
+
+        /*
+            Jogando contra computador
+        */
+
+        $('#jogo #voce .option').click(function(){
+            $('#jogo #voce .option').find('img').css('opacity', 0.2);
+            $(this).find('img').css('opacity', 1);
+            jogadaComputador();
+
+            // Verificar resultado
+            if($(this).attr('opcao') == "pedra"){ // Pedra
+                if(jogadaOponente == "pedra"){
+                    resultado = "empate";
+                }
+                else if(jogadaOponente == "papel"){
+                    resultado = "computadorGanhou";
+                }
+                else if(jogadaOponente == "tesoura"){
+                    resultado = "jogadorGanhou";
+                }
+            } else if($(this).attr('opcao') == "papel"){ // Papel
+                if(jogadaOponente == "pedra"){
+                    resultado = "jogadorGanhou";
+                }
+                else if(jogadaOponente == "papel"){
+                    resultado = "empate";
+                }
+                else if(jogadaOponente == "tesoura"){
+                    resultado = "computadorGanhou";
+                }
+            } else if($(this).attr('opcao') == "tesoura"){ // Tesoura
+                if(jogadaOponente == "pedra"){
+                    resultado = "computadorGanhou";
+                }
+                else if(jogadaOponente == "papel"){
+                    resultado = "jogadorGanhou";
+                }
+                else if(jogadaOponente == "tesoura"){
+                    resultado = "empate";
+                }
+            }
+
+            // Alteração do placar
+            if(resultado == 'jogadorGanhou'){
+                pontuacaoJogador++;
+            } else if(resultado == 'computadorGanhou'){
+                pontuacaoComputador++;
+            } else if(resultado == 'empate'){/* Faz nada */}
+            
+            atualizarPlacar();
+        });
+
+        // Gerar jogada do computador
+        function jogadaComputador(){
+            jogadaOponente = Math.round(Math.random()*3);
+            verificarJogadaComputador(jogadaOponente);
+        }
+
+        function verificarJogadaComputador(resultado){
+            $('#jogo #computador .option').find('img').css('opacity',0.2);
+            switch (jogadaOponente) {
+                case 1:
+                    jogadaOponente = "pedra";
+                    break;
+
+                case 2:
+                    jogadaOponente = "papel";
+                    break;
+
+                case 3:
+                    jogadaOponente = "tesoura";
+                    break;
+            
+                default:
+                    jogadaComputador();
+                    break;
+            }
+            $(`#jogo #computador .option[opcao="${jogadaOponente}"]`).find('img').css('opacity',1);
+        }
+
+
+        alterarFavicon(1);
+        function alterarFavicon(x){
+            setTimeout(()=>{
+                if(x == 1){
+                    $('link[rel="shortcut icon"]').attr('href','scisor.png');
+                    alterarFavicon(2);
+                } else if(x == 2){
+                    $('link[rel="shortcut icon"]').attr('href','rock.png');
+                    alterarFavicon(3);
+                } else if(x == 3){
+                    $('link[rel="shortcut icon"]').attr('href','paper.png');
+                    alterarFavicon(1);
+                }
+            },1000);
+        }
+
+    </script>
+</body>
+</html>
