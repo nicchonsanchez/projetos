@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteador de números</title>
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sora:wght@100..800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <main class="container">
+        <header><img id="logo" src="./assets/logo.png" alt="Logo Numbers"></header>
+
+        <div class="grid" id="coluna-principal">
+            <section>
+                <header>
+                    <h2 class="overline">Online - Gratuito</h2>
+                    <h1 class="display-lg">Sorteio de Números</h1>
+                </header>
+
+                <section class="about desktop">
+                    <article class="flex">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 7.28336C22 9.92493 19.7611 12.0667 17 12.0667C16.6753 12.0671 16.3516 12.0371 16.0327 11.9772C15.8031 11.9341 15.6883 11.9126 15.6082 11.9248C15.5281 11.937 15.4145 11.9974 15.1874 12.1182C14.545 12.4598 13.7959 12.5805 13.0755 12.4465C13.3493 12.1097 13.5363 11.7056 13.6188 11.2724C13.6688 11.0074 13.545 10.75 13.3594 10.5616C12.5166 9.70577 12 8.55254 12 7.28336C12 4.64178 14.2388 2.5 17 2.5C19.7611 2.5 22 4.64178 22 7.28336Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M15.4922 7.5H15.5003M18.4922 7.5H18.5003" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M7.50189 21.5H4.71817C4.39488 21.5 4.07021 21.4545 3.77327 21.3269C2.80666 20.9116 2.31624 20.3632 2.08769 20.0201C1.95764 19.825 1.97617 19.5763 2.11726 19.3889C3.23716 17.9014 5.83846 17.003 7.50665 17.0029C9.17484 17.003 11.7714 17.9014 12.8913 19.3889C13.0324 19.5763 13.0509 19.825 12.9209 20.0201C12.6923 20.3632 12.2019 20.9116 11.2353 21.3269C10.9383 21.4545 10.6137 21.5 10.2904 21.5H7.50189Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.2854 11.789C10.2854 13.3203 9.04129 14.5617 7.50664 14.5617C5.97199 14.5617 4.72791 13.3203 4.72791 11.789C4.72791 10.2577 5.97199 9.01636 7.50664 9.01636C9.04129 9.01636 10.2854 10.2577 10.2854 11.789Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <div>
+                            <h6 class="p-md">Como funciona o sorteador de números?</h6>
+                            <p class="p-sm">O sorteador utiliza um algoritmo de geração aleatória para criar números dentro do intervalo especificado pelo usuário.</p>
+                        </div>
+                    </article>
+
+                    <article class="flex">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 7.28336C22 9.92493 19.7611 12.0667 17 12.0667C16.6753 12.0671 16.3516 12.0371 16.0327 11.9772C15.8031 11.9341 15.6883 11.9126 15.6082 11.9248C15.5281 11.937 15.4145 11.9974 15.1874 12.1182C14.545 12.4598 13.7959 12.5805 13.0755 12.4465C13.3493 12.1097 13.5363 11.7056 13.6188 11.2724C13.6688 11.0074 13.545 10.75 13.3594 10.5616C12.5166 9.70577 12 8.55254 12 7.28336C12 4.64178 14.2388 2.5 17 2.5C19.7611 2.5 22 4.64178 22 7.28336Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M15.4922 7.5H15.5003M18.4922 7.5H18.5003" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M7.50189 21.5H4.71817C4.39488 21.5 4.07021 21.4545 3.77327 21.3269C2.80666 20.9116 2.31624 20.3632 2.08769 20.0201C1.95764 19.825 1.97617 19.5763 2.11726 19.3889C3.23716 17.9014 5.83846 17.003 7.50665 17.0029C9.17484 17.003 11.7714 17.9014 12.8913 19.3889C13.0324 19.5763 13.0509 19.825 12.9209 20.0201C12.6923 20.3632 12.2019 20.9116 11.2353 21.3269C10.9383 21.4545 10.6137 21.5 10.2904 21.5H7.50189Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.2854 11.789C10.2854 13.3203 9.04129 14.5617 7.50664 14.5617C5.97199 14.5617 4.72791 13.3203 4.72791 11.789C4.72791 10.2577 5.97199 9.01636 7.50664 9.01636C9.04129 9.01636 10.2854 10.2577 10.2854 11.789Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <div>
+                            <h6 class="p-md">Posso escolher o intervalo dos números?</h6>
+                            <p class="p-sm">Sim, você pode definir os valores mínimo e máximo para o intervalo dos números sorteados.</p>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+            <section id="react-area">
+                <form class="flex">
+                    <header>
+                        <h3 class="label-lg">Quero sortear:</h3>
+                        <p class="p-lg">Defina o intervalo e a quantidade de números, clique em "Sortear" e veja os resultados na tela. É rápido e fácil!</p>
+                    </header>
+
+                    <section id="controls">
+                        <div class="flex numbers-controls">
+                            <div class="input-box">
+                                <label for="qnt-numbers" class="label-md">Números</label>
+                                <div class="border-gradient">
+                                    <input regex-number type="text" id="qnt-numbers" class="display-sm" value="2" required>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <label for="min-numbers" class="label-md">De</label>
+                                <div class="border-gradient">
+                                    <input regex-number type="text" id="min-numbers" class="display-sm" value="1" required>
+                                </div>
+                            </div>
+                            <div class="input-box">
+                                <label for="max-numbers" class="label-md">Até</label>
+                                <div class="border-gradient">
+                                    <input regex-number type="text" id="max-numbers" class="display-sm" value="100" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-box checkbox flex">
+                            <input type="checkbox" name="checkbox-reapeat" id="checkbox-reapeat" checked>
+                            <label for="checkbox-reapeat" class="flex"><div class="interruptor"><div class="ball"></div></div> Não repetir número</label>
+                        </div>
+                    </section>
+
+                    <div class="border-gradient" style="width: 100%;">
+                        <button class="flex label-md">Sortear <img src="./assets/arrow.svg" alt="seta"></button>
+                    </div>
+                </form>
+
+                <article id="resultado" class="flex display-none">
+                    <header>
+                        <h3 class="label-lg">Resultado do sorteio</h3>
+                        <h4 class="overline"><span id="lottery-number">1</span>º Resultado</h4>
+                    </header>
+
+                    <div class="list-results flex">
+                        <span class="result overline">23</span>
+                        <span class="result overline">12</span>
+                    </div>
+
+                    <div class="border-gradient" style="width: 100%;">
+                        <button onclick="sortearNovamente()" class="flex label-md">Sortear novamente <img src="./assets/reload.svg" alt="Recarregar"></button>
+                    </div>
+                </article>
+            </section>
+
+            <section class="about mobile">
+                <article class="flex">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 7.28336C22 9.92493 19.7611 12.0667 17 12.0667C16.6753 12.0671 16.3516 12.0371 16.0327 11.9772C15.8031 11.9341 15.6883 11.9126 15.6082 11.9248C15.5281 11.937 15.4145 11.9974 15.1874 12.1182C14.545 12.4598 13.7959 12.5805 13.0755 12.4465C13.3493 12.1097 13.5363 11.7056 13.6188 11.2724C13.6688 11.0074 13.545 10.75 13.3594 10.5616C12.5166 9.70577 12 8.55254 12 7.28336C12 4.64178 14.2388 2.5 17 2.5C19.7611 2.5 22 4.64178 22 7.28336Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M15.4922 7.5H15.5003M18.4922 7.5H18.5003" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M7.50189 21.5H4.71817C4.39488 21.5 4.07021 21.4545 3.77327 21.3269C2.80666 20.9116 2.31624 20.3632 2.08769 20.0201C1.95764 19.825 1.97617 19.5763 2.11726 19.3889C3.23716 17.9014 5.83846 17.003 7.50665 17.0029C9.17484 17.003 11.7714 17.9014 12.8913 19.3889C13.0324 19.5763 13.0509 19.825 12.9209 20.0201C12.6923 20.3632 12.2019 20.9116 11.2353 21.3269C10.9383 21.4545 10.6137 21.5 10.2904 21.5H7.50189Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.2854 11.789C10.2854 13.3203 9.04129 14.5617 7.50664 14.5617C5.97199 14.5617 4.72791 13.3203 4.72791 11.789C4.72791 10.2577 5.97199 9.01636 7.50664 9.01636C9.04129 9.01636 10.2854 10.2577 10.2854 11.789Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div>
+                        <h6 class="p-md">Como funciona o sorteador de números?</h6>
+                        <p class="p-sm">O sorteador utiliza um algoritmo de geração aleatória para criar números dentro do intervalo especificado pelo usuário.</p>
+                    </div>
+                </article>
+
+                <article class="flex">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 7.28336C22 9.92493 19.7611 12.0667 17 12.0667C16.6753 12.0671 16.3516 12.0371 16.0327 11.9772C15.8031 11.9341 15.6883 11.9126 15.6082 11.9248C15.5281 11.937 15.4145 11.9974 15.1874 12.1182C14.545 12.4598 13.7959 12.5805 13.0755 12.4465C13.3493 12.1097 13.5363 11.7056 13.6188 11.2724C13.6688 11.0074 13.545 10.75 13.3594 10.5616C12.5166 9.70577 12 8.55254 12 7.28336C12 4.64178 14.2388 2.5 17 2.5C19.7611 2.5 22 4.64178 22 7.28336Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/><path d="M15.4922 7.5H15.5003M18.4922 7.5H18.5003" stroke="white" stroke-width="1.5" stroke-linecap="round"/><path d="M7.50189 21.5H4.71817C4.39488 21.5 4.07021 21.4545 3.77327 21.3269C2.80666 20.9116 2.31624 20.3632 2.08769 20.0201C1.95764 19.825 1.97617 19.5763 2.11726 19.3889C3.23716 17.9014 5.83846 17.003 7.50665 17.0029C9.17484 17.003 11.7714 17.9014 12.8913 19.3889C13.0324 19.5763 13.0509 19.825 12.9209 20.0201C12.6923 20.3632 12.2019 20.9116 11.2353 21.3269C10.9383 21.4545 10.6137 21.5 10.2904 21.5H7.50189Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.2854 11.789C10.2854 13.3203 9.04129 14.5617 7.50664 14.5617C5.97199 14.5617 4.72791 13.3203 4.72791 11.789C4.72791 10.2577 5.97199 9.01636 7.50664 9.01636C9.04129 9.01636 10.2854 10.2577 10.2854 11.789Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div>
+                        <h6 class="p-md">Posso escolher o intervalo dos números?</h6>
+                        <p class="p-sm">Sim, você pode definir os valores mínimo e máximo para o intervalo dos números sorteados.</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+    
+    <script src="./js/script.js"></script>
+</body>
+</html>

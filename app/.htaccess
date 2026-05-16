@@ -1,0 +1,56 @@
+# app.nicchon.com — segurança e roteamento
+
+# ============================================================
+# HTTPS forçado
+# ============================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ============================================================
+# Headers de segurança
+# ============================================================
+<IfModule mod_headers.c>
+  Header set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "DENY"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+  Header set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: https:; script-src 'self'; connect-src 'self';"
+</IfModule>
+
+# ============================================================
+# Bloqueio de arquivos sensíveis
+# ============================================================
+<FilesMatch "\.(env|git|gitignore|sql|log|bak|template|md|tar\.gz)$">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "^(_config|manifest\.json|composer\.json|package\.json|package-lock\.json)$">
+  Require all denied
+</FilesMatch>
+
+RedirectMatch 403 /\.git
+RedirectMatch 403 /tarefas-md
+RedirectMatch 403 /\.backups
+RedirectMatch 403 /\.github
+
+# ============================================================
+# DirectoryIndex e tratamento
+# ============================================================
+DirectoryIndex index.html index.php
+Options -Indexes
+
+# ============================================================
+# Cache de assets estáticos
+# ============================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 30 days"
+  ExpiresByType application/javascript "access plus 30 days"
+  ExpiresByType image/png "access plus 90 days"
+  ExpiresByType image/svg+xml "access plus 90 days"
+  ExpiresByType image/webp "access plus 90 days"
+</IfModule>

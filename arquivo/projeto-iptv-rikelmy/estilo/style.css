@@ -1,0 +1,234 @@
+/* PADRÃO */
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2? family= Figtree:wght@300;400 & display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: var(--fonte-padrao);
+}
+html, body{
+    height: 100%;
+}
+
+:root {
+    /* ORIGINAL
+    --cor0:#023535;
+    --cor1:#015958;
+    --cor2:#008F8C;
+    --cor3:#0CABA8;
+    --cor4:#0FC2C0;
+    */
+
+    --cor0:#023535;
+    --cor1:#015958;
+    --cor2:#087b79;
+    --cor3:#0b9997;
+    --cor4:#06a3a0;
+
+    --fonte-padrao: Arial, Helvetica, sans-serif;
+    --fonte-titulo: 'Figtree', sans-serif;
+}
+
+.button{
+    padding: 9px 12px;
+    font-weight: bolder;
+    font-size: 1.6em;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px #00020d2b;
+    display: inline-block;
+}
+.button:hover{
+    color: var(--cor0);
+}
+a {
+    color: unset;
+    text-decoration: none;
+}
+
+
+/* HEADER */
+header {
+    background-color: rgb(255, 255, 255);
+    padding: 2px 2%;
+    text-align: left;
+}
+header div{
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgb(150, 150, 150);
+    background-color: rgb(245, 245, 245);
+}
+header div:hover{
+    border: 1px solid rgb(150, 150, 150);
+    background-color: rgb(207, 207, 207);
+}
+header img {
+    height: 20px;
+    vertical-align: top;
+}
+header p{
+    display: inline;
+    font-size: 18px;
+}
+
+
+/* SESSÕES */
+section {
+    color: white;
+}
+
+/* SESSÕES: 1- comeco */
+#comeco{
+    background: rgb(16, 16, 16) no-repeat center;
+    background-image: url(../imagens/torcedor.png);
+    background-size: cover;
+    text-align: center;
+    padding: 13vh 2%;
+}
+
+
+#comeco .titulo{
+    margin-bottom: 60px;
+}
+#comeco .titulo h1 {
+    font-size: 2.8em;
+    margin-bottom: 5px;
+}
+
+
+
+.oferta {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.oferta .button {
+    background-image: linear-gradient(to left top, var(--cor0), var(--cor4));
+    color: black;
+    padding: 10px 20px;
+    margin-top: 40px;
+    border-radius: 5px;
+    box-shadow: inset 2px 4px 7px 1px #00000082;
+    font-size: 1.4em;
+}
+.oferta .button:hover {
+    color: var(--cor0);
+}
+
+.oferta span.valor {
+    font-size: 2.7em;
+    color: var(--cor4);
+}
+
+
+
+.dispositivos{
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px 20px;
+}
+.dispositivos h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.dispositivos .list-itens{
+    text-align: center;
+}
+.dispositivos article.item {
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    max-width: 260px;
+}
+.dispositivos .item h3 {
+    margin: 20px 0px 10px;
+    text-align: center;
+}
+
+.dispositivos .item p {
+    margin: 19px 0px;
+    padding: 0px 0px;
+    text-align: center;
+}
+
+
+
+
+/* SESSÕES: 2- comeco */
+#nossos-planos {
+    text-align: center;
+    padding: 30px 10px;
+    background-color: #00020D;
+}
+
+#nossos-planos h2 {
+    color: white;
+    font-size: 1.9em;
+    padding: 4px 0px;
+    margin: 8px 10px;
+    font-weight: bold;
+}
+
+.plano {
+    transition: 0.2s;
+    display: inline-block;
+    width: 360px;
+    min-height: 200px;
+    margin: 15px;
+    padding: 10px 5px 35px;
+    background-image: linear-gradient(to right, var(--cor0), var(--cor3));
+    border-radius: 15px 15px;
+    box-shadow: inset -3px -3px 4px 2px rgb(0 0 0 / 16%);
+}
+.plano:hover{
+    margin: 10px;
+    padding: 15px 10px 40px;
+    width: 370px;
+    min-height: 210px;
+}
+
+.plano > h3 {
+    font-size: 1.6em;  
+    text-align: center;
+    padding: 10px 0px 5px 0px;
+    margin: 6px 0px;
+}
+
+.plano p {
+    text-align: center;
+    margin-bottom: 13px;
+}
+.plano .preco {
+    font-size: 1.8em;
+    color: black;
+    font-weight: bolder;
+    padding: 5px 8px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 4px #00020d17;
+    display: inline-block;
+}
+
+.plano ul {
+    font-size: 1.3em;
+    padding: 10px 0px 24px 0px;
+    margin: 0px 8px;
+    list-style-position: inside;
+    list-style-type: '\2714\00A0';
+    text-align: left;
+    font-size: 0.9em;
+}
+.plano ul li {
+    padding-bottom: 15px;
+}
+
+
+
+
+/* FOOTER */
+footer{
+    padding: 10px 2%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}

@@ -1,0 +1,8 @@
+{
+  "slug": "jokenpo",
+  "titulo": "Jokenpô",
+  "categoria": "Jogos",
+  "ano": "2023",
+  "status": "Concluído",
+  "descricao": "Pedra-papel-tesoura em JavaScript puro. Modos single (vs CPU) e dois jogadores."
+}

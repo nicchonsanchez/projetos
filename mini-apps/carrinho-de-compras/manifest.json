@@ -1,0 +1,8 @@
+{
+  "slug": "carrinho-de-compras",
+  "titulo": "Carrinho de compras",
+  "categoria": "Estudo técnico",
+  "ano": "2024",
+  "status": "Concluído",
+  "descricao": "Protótipo de carrinho — adicionar, remover e calcular subtotal. Estado em memória, sem persistência."
+}

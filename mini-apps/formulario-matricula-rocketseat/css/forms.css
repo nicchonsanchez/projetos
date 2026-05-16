@@ -1,0 +1,177 @@
+@import url(global.css);
+
+form{
+    margin-top: 3rem;
+}
+
+fieldset{
+    border: none;
+    display: grid;
+    gap: 1.5rem;
+}
+
+fieldset + fieldset{
+    margin-top: 3rem;
+}
+
+legend{
+    font: 600 1rem/1.25 var(--font-family);
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+}
+
+.input-wrapper:has([disabled]){
+    opacity: 0.5;
+}
+
+label{
+    font: 400 0.875rem/1.4 var(--font-family);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+input,
+select,
+textarea{
+    appearance: none;
+    color: var(--text-primary);
+    font: inherit;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    border: 2px solid transparent;
+    outline: 1px solid var(--stroke-default);
+}
+
+input:hover:not([disabled]),
+select:hover,
+textarea:hover,
+input[type="date"]:focus-within{
+    outline: .25rem solid var(--surface-secondary);
+    outline-offset: .1px;
+    border-color: var(--stroke-highlight);
+}
+
+input[type="date"]{
+    position: relative;
+
+    &::-webkit-calendar-picker-indicator{
+        opacity: 0;
+    }
+    &::before{
+        content: "";
+        height: 1.25rem;
+        width: 1.25rem;
+        background: url(../assets/icons/calendar-03.svg) center/contain;
+
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+select{
+    background: url(../assets/icons/arrow-down-01.svg) no-repeat calc(100% - 1rem);
+}
+
+fieldset.address .flex{
+    gap: 1.5rem;
+}
+
+.droparea-wrapper{
+    border: 2px dashed transparent;
+    outline: 1px dashed var(--stroke-default);
+    border-radius: 0.5rem;
+    display: grid;
+    justify-items: center;
+    gap: .5rem;
+
+    text-align: center;
+    padding: 1.75rem 1rem;
+
+    position: relative;
+
+    & input{
+        cursor: pointer;
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+    }
+
+    & p{
+        color: #A8A29E;
+    }
+
+    &:hover, &:has(input:focus){
+        outline-width: 0;
+        border-color: var(--stroke-highlight);
+        background-color: var(--surface-secondary);
+
+        & svg path{
+            stroke: var(--stroke-highlight);
+        }
+        & p{
+            color: var(--text-tertiary);
+        }
+    }
+}
+
+label + .radio-wrapper{
+    margin-top: 1rem;
+}
+
+.radio-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+    gap: 1rem;
+}
+
+.radio-inner{
+    border: 1px solid var(--stroke-default);
+    border-radius: .5rem;
+    display: grid;
+    justify-items: center;
+    gap: .5rem;
+    padding: 2rem .5rem .5rem;
+    
+    position: relative;
+    & input,
+    & input:focus,
+    & input:hover{
+        all: unset;
+        position: absolute;
+        inset: 0;
+    }
+
+    .radio-image{
+        background-image: url(../assets/icons/radio-default.svg);
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        top: .5rem;
+        left: .5rem;
+    }
+
+    &:hover,
+    &:focus-within{
+        border: 1px solid var(--stroke-highlight);
+
+        & .radio-image{
+            background-image: url(../assets/icons/radio-hover.svg);
+        }
+    }
+
+    &:has(:checked){
+        border: 2px solid var(--stroke-highlight);
+        & .radio-image{
+            background-image: url(../assets/icons/radio-checked.svg);
+        }
+    }
+}
+
+.actions-wrapper {
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+}

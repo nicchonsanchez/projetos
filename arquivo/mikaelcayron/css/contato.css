@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html, body{
+    height: 100%;
+}
+.center{
+    width: 900px;
+    max-width: 96%;
+    margin: 0 auto;
+}
+.escurecer{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+}
+@font-face {
+    font-family: "Tungsten";
+    src: url(../fonts/Tungsten-Bold.ttf);
+}
+a{
+    text-decoration: none;
+}
+
+/* --- Menu ---*/
+nav#principal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(250, 250, 250, 0.95);
+    z-index: 100;
+}
+nav#principal ul{
+    list-style: none;
+    text-align: center;
+}
+.menu li{
+    display: inline;
+    margin: 0 5px;
+}
+.menu li div{
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: black;
+    display: inline;
+}
+.menu li div:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+    color: rgb(2 114 216);
+}
+
+/*--- Section ---*/
+body > section{
+    width: 100%;
+    min-height: 100%;
+}
+
+/* --- Contato ---*/
+section.contato{
+    background: black;
+    color: #f3f3f3;
+    padding-top: 100px;
+}
+.contato .contato-box{
+    max-width: 100%;
+    width: 700px;
+    height: 400px;
+    margin: 10px auto;
+    background-color: rgb(30, 30, 30);
+}
+.contato .contato-box section{
+    display: inline-block;
+    height: 100%;
+}
+
+/*--- Esquerda ---*/
+.contato .esquerda{
+    width: 35%;
+    background: black url(../images/foto.png) center;
+    align-items: center;
+}
+.contato .esquerda .escurecer{
+    position: relative;
+}
+.contato .esquerda .texto {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    transform: translateY(-50%);
+}
+.contato .esquerda h2{
+    font-size: 36px;
+    font-weight: 100;
+    font-family: 'Tungsten';
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+.contato .esquerda h3{
+    font-size: 18px;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin-top: -5px;
+}
+.contato .esquerda p{
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+/*--- Direita ---*/
+.contato .direita{
+    width: calc(65% - 6px);
+    vertical-align: top;
+    text-align: center;
+    padding: 15px;
+}
+.contato .direita .contatos{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.contato .direita .contatos div{
+    margin: 8px;
+    background-color: #f3f3f3;
+    border-radius: 50px;
+    padding: 15px 25px;
+}
+.contato .direita .contatos div:hover{
+    background-color: #9e9e9e;
+}
+.contato .direita .contatos div *{
+    vertical-align: middle;
+}
+.contato .direita .contatos h3{
+    display: inline;
+    color: rgb(30, 30, 30);
+    margin-left: 15px;
+}
+.contato .direita .contatos img{
+    width: 30px;
+}
+
+
+/* FOOTER */
+footer{
+    padding: 10px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    section.contato{
+        padding: 28px 0 0 0;
+        background-color: rgb(30, 30, 30);
+    }
+    .contato .contato-box{
+        height: calc(100% - 28px);
+        width: 100%;
+    }
+    .contato .contato-box section{
+        display: block;
+        height: auto;
+        width: 100%;
+        min-width: auto;
+    }
+    .contato .contato-box .esquerda{
+        height: 250px;
+    }
+    .contato .contato-box .direita{
+        height: auto;
+    }
+    .contato .direita .contatos{
+        position:relative;
+        transform: translate(0,0);
+        left: 0;
+    }
+}
+
+
+/* AJUSTE PARA TELAS GRANDES*/
+@media screen and (min-height: 630px) and (min-width: 768px){
+    .contato .contato-box{
+        max-width: 100%;
+        margin: 10px auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

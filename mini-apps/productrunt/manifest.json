@@ -1,0 +1,8 @@
+{
+  "slug": "productrunt",
+  "titulo": "ProductRunt",
+  "categoria": "Site",
+  "ano": "2023",
+  "status": "Concluído",
+  "descricao": "Landing page de comunicação com slider e animações via Slick Carousel e jQuery."
+}

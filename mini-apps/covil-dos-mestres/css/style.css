@@ -1,0 +1,282 @@
+/*
+    Padrão
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Aoboshi One', serif;
+}
+
+html, body{
+    height: 100%;
+    background-color: rgb(36, 36, 36);
+}
+
+.clear{
+    clear: both;
+}
+
+a{
+    color: unset;
+}
+
+section{
+    min-height: 100vh;
+    padding: 90px 2%;
+}
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2.titulo{
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 50px;
+}
+
+
+
+/*
+    Menú
+*/
+
+body > header{
+    background-color: black;
+    box-shadow: black 0px 2px 5px;
+    z-index: 1000;
+    width: 100%;
+    padding: 30px 2% 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header nav.menu{
+    width: 90%;
+    max-width: 900px;
+    padding: 0 10px 15px;
+    border-bottom: 3px solid white;
+    margin: 0 auto;
+}
+
+nav.menu ul{
+    text-align: center;
+}
+
+nav.menu ul li{
+    display: inline-block;
+    color: white;
+}
+
+nav.menu ul li div{
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-bottom: 3px transparent solid;
+    font-size: 1.1em;
+}
+nav.menu ul li div:hover{
+    border-bottom: 2px solid;
+}
+
+nav.menu ul li a{
+    text-decoration: unset;
+}
+
+
+
+
+
+/*
+    Section: Home
+*/
+section.home{
+    background-color: black;
+    color: white;
+    width: 100%;
+    padding-top: 160px;
+    height: calc(100vh - 100px);
+}
+
+#home .container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+#home .logo{
+    width: 90%;
+    max-width: 350px;
+    margin: 0 auto;
+    display: inline-block;
+    text-align: center;
+}
+
+#home .logo img{
+    width: 100%;
+}
+
+#home .frase-impacto{
+    color: white;
+    text-align: center;
+    text-align: left;
+}
+#home .frase-impacto quote{
+    display: inline-block;
+    text-align: center;
+}
+#home .frase-impacto p{
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+
+
+
+/*
+    Section: Membros
+*/
+section.membros{
+    background: #f1f1f1;
+}
+
+#membros .container{
+    padding: 0 10%;
+}
+
+
+#membros .container figure{
+    float: left;
+    display: grid;
+    grid-template-rows: calc(75vh - 100px) 1fr;
+    width: calc(33% - 30px);
+    padding: 10px;
+    margin: 15px;
+    border: 2px solid black;
+    min-height: 80vh;
+}
+
+#membros .container figure .foto{
+    height: 100%;
+    width: 100%;
+    background: #000032 center no-repeat;
+    background-size: cover;
+}
+
+#membros .container figure figcaption{
+    text-align: center;
+    padding: 15px 0;
+}
+
+figure.wellignton:hover .foto{
+    background-image: url('../images/wellington-2.jpg') !important;
+}
+figure.matheus:hover .foto{
+    background-image: url('../images/matheus-2.jpg') !important;
+}
+figure.nicchon:hover .foto{
+    background-image: url('../images/nicchon-2.jpg') !important;
+}
+figure.samuel:hover .foto{
+    background-image: url('../images/samuel-2.jpg') !important;
+}
+figure.mikael:hover .foto{
+    background-image: url('../images/mikael-2.jpg') !important;
+}
+figure.gabriel:hover .foto{
+    background-image: url('../images/gabriel-2.jpg') !important;
+}
+figure.arthur:hover .foto{
+    background-image: url('../images/arthur-2.jpg') !important;
+}
+
+
+
+
+/*
+    Frases
+*/
+section.frases{
+    color: white;
+    text-align: center;
+    background-color: inherit;
+}
+section.frases h2.titulo{
+    color: yellow;
+}
+
+.frases quote{
+    margin-bottom: 50px;
+    display: block;
+}
+.frases quote q{
+    font-size: 1.5em;
+}
+
+
+
+
+/*
+    Recordações
+*/
+section.recordacoes{
+    background-color: #f1f1f1;
+}
+
+
+
+
+/*
+    Footer
+*/
+body > footer{
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+
+
+/*
+    Responsivo
+*/
+
+@media screen and (max-width: 1000px) {
+
+    #membros .container figure{
+        width: calc(50% - 30px);
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    header nav.menu{
+        width: 95%;
+    }
+    nav.menu ul li div{
+        padding: 5px 10px;
+        margin: 0;
+        font-size: 0.9em;
+    }
+
+    #home .container{
+        grid-template-columns: 1fr;
+    }
+    #home .container .frase-impacto{
+        text-align: center;
+    }
+
+    #membros .container figure{
+        width: calc(100%);
+        max-width: 350px;
+        margin: 10px auto;
+        float: none;
+        min-height: auto;
+    }
+
+}

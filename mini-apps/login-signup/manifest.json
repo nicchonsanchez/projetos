@@ -1,0 +1,8 @@
+{
+  "slug": "login-signup",
+  "titulo": "Página de login e cadastro",
+  "categoria": "Estudo técnico",
+  "ano": "2024",
+  "status": "Concluído",
+  "descricao": "Página única com formulários de login e cadastro alternados via JS. Estudo de UX de autenticação."
+}
