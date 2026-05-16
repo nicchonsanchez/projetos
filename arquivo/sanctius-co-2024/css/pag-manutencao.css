@@ -1,0 +1,59 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif !important;
+}
+
+:root {
+    --dourado:#c3b324;
+    --verde-folha: #006401;
+    --marrom-tronco: #532819;
+}
+body{
+    border-top: 8px solid var(--dourado);
+}
+header{
+    border: 0;
+}
+
+
+
+
+/* PÁGINA EM MANUTENÇÂO*/
+section.pag-manutencao{
+    padding: 90px 20px;
+}
+section.pag-manutencao > *{
+    display: inline-block;
+    vertical-align: middle;
+}
+section.pag-manutencao img{
+    width: 250px;
+    max-width: 60%;
+    margin: 0 auto;
+}
+section.pag-manutencao h2{
+    font-size: 28px;
+}
+section.pag-manutencao p{
+    font-size: 18px;
+}
+section.pag-manutencao a{
+    color: var(--verde-folha) !important;
+    text-decoration: underline !important;
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    section.pag-manutencao{
+        text-align: center;
+    }
+    section.pag-manutencao img{
+        display: block;
+        width: 90px;
+    }
+}

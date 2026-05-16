@@ -1,0 +1,111 @@
+<?php
+// app.nicchon.com/api/links.php
+// GET: lista links ativos do MySQL (público)
+// POST: cria/atualiza link (autenticado via Bearer token)
+// DELETE: desativa link (autenticado)
+// Banco: niccho25_portfolio (Hostgator)
+// Secrets injetados no deploy via GitHub Actions.
+
+declare(strict_types=1);
+
+header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
+
+const DB_HOST = '__DB_HOST__';
+const DB_NAME = '__DB_NAME__';
+const DB_USER = '__DB_USER__';
+const DB_PASS = '__DB_PASS__';
+const ADMIN_TOKEN = '__ADMIN_TOKEN__';
+
+function pdo(): PDO {
+    static $pdo = null;
+    if ($pdo !== null) return $pdo;
+    $pdo = new PDO(
+        sprintf('mysql:host=%s;dbname=%s;charset=utf8mb4', DB_HOST, DB_NAME),
+        DB_USER,
+        DB_PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        ]
+    );
+    return $pdo;
+}
+
+function require_auth(): void {
+    $h = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    if (!preg_match('/Bearer\s+(\S+)/i', $h, $m)) {
+        http_response_code(401);
+        echo json_encode(['error' => 'missing bearer']);
+        exit;
+    }
+    if (!hash_equals(ADMIN_TOKEN, $m[1])) {
+        http_response_code(403);
+        echo json_encode(['error' => 'forbidden']);
+        exit;
+    }
+}
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+try {
+    if ($method === 'GET') {
+        header('Cache-Control: public, max-age=120');
+        $stmt = pdo()->query("SELECT slug, titulo, descricao, url, categoria, cover_url, ordem, updated_at AS atualizado_em FROM app_links WHERE ativo = 1 ORDER BY ordem ASC, titulo ASC");
+        $rows = array_map(function ($r) {
+            $r['external'] = true;
+            $r['status'] = $r['status'] ?? 'Em produção';
+            return $r;
+        }, $stmt->fetchAll());
+        echo json_encode($rows, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        exit;
+    }
+
+    if ($method === 'POST') {
+        require_auth();
+        $body = json_decode(file_get_contents('php://input') ?: '[]', true);
+        if (!is_array($body)) { http_response_code(400); echo json_encode(['error'=>'invalid json']); exit; }
+
+        $slug = trim((string)($body['slug'] ?? ''));
+        if ($slug === '' || !preg_match('/^[a-z0-9-]{1,64}$/', $slug)) {
+            http_response_code(422); echo json_encode(['error'=>'slug invalido']); exit;
+        }
+
+        $stmt = pdo()->prepare("INSERT INTO app_links (slug, titulo, descricao, url, categoria, cover_url, ordem, ativo)
+            VALUES (:slug, :titulo, :descricao, :url, :categoria, :cover_url, :ordem, :ativo)
+            ON DUPLICATE KEY UPDATE titulo=VALUES(titulo), descricao=VALUES(descricao), url=VALUES(url),
+              categoria=VALUES(categoria), cover_url=VALUES(cover_url), ordem=VALUES(ordem), ativo=VALUES(ativo)");
+        $stmt->execute([
+            ':slug' => $slug,
+            ':titulo' => (string)($body['titulo'] ?? ''),
+            ':descricao' => (string)($body['descricao'] ?? ''),
+            ':url' => (string)($body['url'] ?? ''),
+            ':categoria' => (string)($body['categoria'] ?? 'Externo'),
+            ':cover_url' => (string)($body['cover_url'] ?? ''),
+            ':ordem' => (int)($body['ordem'] ?? 0),
+            ':ativo' => (int)($body['ativo'] ?? 1),
+        ]);
+        echo json_encode(['ok' => true, 'slug' => $slug]);
+        exit;
+    }
+
+    if ($method === 'DELETE') {
+        require_auth();
+        $slug = (string)($_GET['slug'] ?? '');
+        if (!preg_match('/^[a-z0-9-]{1,64}$/', $slug)) {
+            http_response_code(422); echo json_encode(['error'=>'slug invalido']); exit;
+        }
+        $stmt = pdo()->prepare("UPDATE app_links SET ativo = 0 WHERE slug = :slug");
+        $stmt->execute([':slug' => $slug]);
+        echo json_encode(['ok' => true, 'affected' => $stmt->rowCount()]);
+        exit;
+    }
+
+    http_response_code(405);
+    echo json_encode(['error' => 'method not allowed']);
+} catch (Throwable $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'db error']);
+    error_log('[links.php] ' . $e->getMessage());
+}

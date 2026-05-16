@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App de Nicchon Sanchez</title>
+  <meta name="description" content="Mini-apps, experimentos e estudos técnicos de Nicchon Sanchez.">
+  <meta name="theme-color" content="#5C1F1F">
+  <meta property="og:title" content="App · Nicchon Sanchez">
+  <meta property="og:description" content="Mini-apps, experimentos e estudos técnicos.">
+  <meta property="og:image" content="https://app.nicchon.com/assets/og-image.png">
+  <link rel="icon" href="https://nicchon.com/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="https://nicchon.com" class="back-link" aria-label="Voltar para nicchon.com">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      nicchon.com
+    </a>
+  </header>
+
+  <main class="container">
+    <section class="hero enter-up enter-up-1">
+      <p class="font-mono-meta">Belo Horizonte, MG · 2026</p>
+      <h1 class="font-serif-display">Mini-apps, experimentos e estudos.</h1>
+      <p class="lede">Coleção viva de coisas pequenas que construí ao longo do caminho. Algumas viraram produto, outras ficaram como rascunho. Todas continuam aqui.</p>
+    </section>
+
+    <hr class="enter-up enter-up-2">
+
+    <section id="projetos-section" class="enter-up enter-up-3">
+      <header class="section-header">
+        <p class="font-mono-meta">Mini-apps embutidos</p>
+        <h2 class="font-serif-display">Projetos.</h2>
+      </header>
+      <div id="projetos-grid" class="grid" aria-busy="true">
+        <p class="state-msg">Carregando…</p>
+      </div>
+    </section>
+
+    <hr class="enter-up enter-up-4">
+
+    <section id="links-section" class="enter-up enter-up-5">
+      <header class="section-header">
+        <p class="font-mono-meta">Links externos</p>
+        <h2 class="font-serif-display">Subdomínios e marcas.</h2>
+      </header>
+      <div id="links-grid" class="grid" aria-busy="true">
+        <p class="state-msg">Carregando…</p>
+      </div>
+    </section>
+
+    <hr>
+
+    <footer class="site-footer">
+      <p class="font-mono-meta">Última atualização <span id="last-update">—</span></p>
+      <p class="dim">© Nicchon Sanchez · Belo Horizonte, MG</p>
+    </footer>
+  </main>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>

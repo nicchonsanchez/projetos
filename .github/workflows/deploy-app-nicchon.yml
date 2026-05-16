@@ -1,0 +1,78 @@
+name: Deploy app.nicchon.com
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-app-nicchon
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage deploy bundle
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          # Shell do agregador
+          cp -r app/. dist/
+          # Mini-apps embutidos vão pra raiz do site
+          if [ -d "mini-apps" ]; then
+            for d in mini-apps/*/; do
+              slug=$(basename "$d")
+              cp -r "$d" "dist/$slug"
+            done
+          fi
+          # Arquivo histórico fica fora do deploy
+          rm -rf dist/.htaccess.template dist/api/*.template
+          ls -la dist | head -40
+
+      - name: Inject secrets into links.php
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+          ADMIN_TOKEN: ${{ secrets.APP_LINKS_ADMIN_TOKEN }}
+        run: |
+          set -euo pipefail
+          python3 <<'EOF'
+          import os
+          src = 'app/api/links.php.template'
+          dst = 'dist/api/links.php'
+          keys = ['DB_HOST','DB_NAME','DB_USER','DB_PASS','ADMIN_TOKEN']
+          missing = [k for k in keys if not os.environ.get(k)]
+          if missing: raise SystemExit(f"Faltam secrets: {missing}")
+          with open(src) as f: content = f.read()
+          for k in keys: content = content.replace(f'__{k}__', os.environ[k])
+          with open(dst, 'w') as f: f.write(content)
+          print(f"OK: {dst}")
+          EOF
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: /app.nicchon.com/
+          exclude: |
+            **/.git*
+            **/.htaccess.template
+            **/*.template
+            **/tarefas-md/**
+            **/.backups/**
+            **/node_modules/**
+          # Preserva subpastas críticas do servidor que não estão no repo
+          # (WordPress do arthur/, Next deploy do convite-naty/, e arquivo/)
+          dangerous-clean-slate: false

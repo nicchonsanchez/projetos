@@ -1,0 +1,12 @@
+# /projetos.nicchon.com/.htaccess
+# Sobe esse arquivo (renomeado pra .htaccess) na raiz /projetos.nicchon.com/ do Hostgator.
+# Redireciona TUDO de projetos.nicchon.com → app.nicchon.com preservando o path.
+
+RewriteEngine On
+
+# Redirect explícito de /projetos/{slug} → /{slug} (limpa nível extra)
+RewriteRule ^projetos/(.*)$ https://app.nicchon.com/$1 [R=301,L]
+
+# Tudo o mais
+RewriteCond %{HTTP_HOST} ^(www\.)?projetos\.nicchon\.com$ [NC]
+RewriteRule ^(.*)$ https://app.nicchon.com/$1 [R=301,L]

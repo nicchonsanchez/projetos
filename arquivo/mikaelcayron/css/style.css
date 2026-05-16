@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+html, body{
+    height: 100%;
+}
+.center{
+    width: 900px;
+    max-width: 96%;
+    margin: 0 auto;
+}
+.escurecer{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+}
+@font-face {
+    font-family: "Tungsten";
+    src: url(../fonts/Tungsten-Bold.ttf);
+}
+a{
+    text-decoration: none;
+}
+
+/* --- Menu ---*/
+nav#principal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(250, 250, 250, 0.95);
+    z-index: 100;
+}
+nav#principal ul{
+    list-style: none;
+    text-align: center;
+}
+.menu li{
+    display: inline;
+    margin: 0 5px;
+}
+.menu li div{
+    padding: 3px 5px;
+    border-radius: 3px;
+    color: black;
+    display: inline;
+}
+.menu li div:hover{
+    background-color: rgba(0, 0, 0, 0.05);
+    color: rgb(2 114 216);
+}
+
+/* --- SECTION --- */
+body > section{
+    width: 100%;
+    min-height: 100%;
+}
+h2.titulo-section{
+    text-align: center;
+    font-size: 56px;
+    letter-spacing: 2px;
+    font-family: 'Tungsten';
+    text-transform: uppercase;
+    padding: 60px 0 40px;
+}
+
+/* --- Home ---*/
+section.home {
+    background: rgb(30, 30, 30) url(../images/home-bg.jpg) center fixed;
+    color: #fff;
+    text-align: center;
+}
+.home article{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.home h2{
+    font-size: 70px;
+    font-weight: 100;
+    font-family: 'Tungsten';
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 56px;
+    margin-bottom: 10px;
+}
+.home h3{
+    font-size: 25px;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin-top: -5px;
+    white-space: nowrap;
+}
+.home p{
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.home .arrow{
+    width: 50px;
+    position: absolute;
+    bottom: 50px;
+    opacity: 0.5;
+    transform: translateX(-50%);
+    transition: 0.3s;
+}
+.home .arrow:hover{
+    opacity: 1;
+}
+
+/* --- Portifolio ---*/
+section.portifolio {
+    background: linear-gradient(90deg,#cecece,#f3f3f3, #f3f3f3, #f3f3f3, #f3f3f3, #f3f3f3,#cecece);
+    padding-bottom: 30px;
+}
+
+.galeria{
+    width: 100%;
+}
+.galeria div{
+    width: calc((100% / 3) - 3px);
+    padding: 2px;
+    display: inline-block;
+}
+.galeria img{
+    margin: 2px;
+    width: 100%;
+    transition: 0.3s;
+}
+.galeria img:hover{
+    filter: brightness(30%);
+}
+
+/* --- Sobre ---*/
+section.sobre {
+    background-color: rgb(30, 30, 30);
+    color: #f3f3f3;
+}
+section.sobre, section.sobre *{max-width: 100%;}
+
+.sobre article{
+    width: 100%;
+}
+.sobre article section{
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+}
+.sobre section.foto {
+    width: calc(40% - 4px);
+}
+.sobre section.texto{
+    width: calc(60% - 4px);
+}
+.sobre section img{
+    width: 100%;
+    padding: 25px;
+    border-right: 3px solid #f3f3f3;
+    filter: brightness(70%);
+}
+.sobre p{
+    font-size: 18px;
+    line-height: 26px;
+    padding: 3px;
+}
+
+/* FOOTER */
+footer{
+    padding: 10px;
+    text-align: center;
+}
+footer *{
+    color: #000;
+}
+
+
+@media screen and (max-width: 768px) {
+    h2.titulo-section{
+        padding-bottom: 20px;
+    }
+    .sobre section.foto {
+        width: 100%;
+        padding: 3px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .sobre section.foto img{
+        width: auto;
+        max-height: 300px;
+        border-right: none;
+        border-bottom: 3px solid #f3f3f3;
+    }
+    .sobre section.texto{
+        width: auto;
+        margin-bottom: 40px;
+        padding: 10px;
+    }
+    .sobre section.texto p{
+        text-align: justify;
+        text-indent: 5px;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .galeria div{
+        width: 100%;
+        padding: 0 15px;
+        display: block;
+    }
+}
+
+
+/* AJUSTE PARA TELAS GRANDES*/
+@media screen and (min-height: 640px) and (min-width: 768px){
+    .sobre .center{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    .sobre article{
+        max-width: 100%;
+        width: 70%;
+        min-width: 600px;
+        margin: 10px auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

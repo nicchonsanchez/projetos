@@ -1,0 +1,8 @@
+{
+  "slug": "sorteador-de-numeros",
+  "titulo": "Sorteador de números",
+  "categoria": "Jogos",
+  "ano": "2025",
+  "status": "Concluído",
+  "descricao": "Site responsivo que sorteia N números dentro de um intervalo definido pelo usuário. Projeto Rocketseat."
+}
