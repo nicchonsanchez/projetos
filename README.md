@@ -179,6 +179,121 @@ Tipografia: **Crimson Pro** (display serif) · **Inter** (sans) · **JetBrains M
 
 ---
 
+## Como gerenciar os projetos do app.nicchon.com
+
+### Adicionar um mini-app NOVO
+
+```bash
+# 1. Criar a pasta e os arquivos
+mkdir mini-apps/meu-novo-app
+cd mini-apps/meu-novo-app
+
+# 2. Adicionar o código (HTML/PHP/JS — sem rebuild)
+# ... edita index.html, etc.
+
+# 3. Criar o manifest.json (obrigatório pra aparecer no agregador)
+cat > manifest.json <<'EOF'
+{
+  "slug": "meu-novo-app",
+  "titulo": "Meu Novo App",
+  "categoria": "Site",
+  "ano": "2026",
+  "status": "Em produção",
+  "descricao": "Descrição curta do que esse app faz."
+}
+EOF
+
+# 4. Commit + push
+git add .
+git commit -m "feat(meu-novo-app): adicionar mini-app"
+git push
+```
+
+Em ~30s o workflow deploya e ele aparece em `https://app.nicchon.com/meu-novo-app/`.
+
+### Ocultar um mini-app SEM deletar
+
+Edita o `manifest.json` da pasta:
+
+```json
+{
+  "oculto": true,
+  "slug": "meu-app",
+  "titulo": "..."
+}
+```
+
+Commit + push. Pasta continua deployada mas não aparece no agregador.
+
+Pra deletar de vez: `rm -rf mini-apps/meu-app && git commit && git push`.
+
+### Adicionar um SUB-DEPLOY (projeto com workflow próprio em outro repo)
+
+Cenário: você tem um repo separado (ex: `convite-aniversario-naty`) cujo CI/CD deploya direto em `/app.nicchon.com/{slug}/`. Pra ele aparecer no agregador, crie:
+
+```bash
+# Neste repo, não no repo do sub-deploy
+cat > app/external-manifests/meu-sub-deploy.json <<'EOF'
+{
+  "slug": "meu-sub-deploy",
+  "titulo": "Meu Sub-Deploy",
+  "categoria": "Site",
+  "ano": "2026",
+  "status": "Em produção",
+  "descricao": "...",
+  "url": "/meu-sub-deploy/",
+  "repoUrl": "https://github.com/nicchonsanchez/meu-sub-deploy",
+  "deploy_proprio": true
+}
+EOF
+git add app/external-manifests/meu-sub-deploy.json
+git commit -m "feat: declarar sub-deploy meu-sub-deploy"
+git push
+```
+
+**Esqueceu de declarar?** O agregador detecta automaticamente. Vai aparecer um card com badge vermelha **"Sem manifest"** e seu nome no header HTTP `X-App-Orphans`. Você fica sabendo antes de qualquer cliente reclamar.
+
+### Adicionar/remover LINK EXTERNO (outros domínios)
+
+Sem UI hoje. Via API com Bearer token:
+
+```bash
+# Cadastrar (ou atualizar — UPSERT por slug)
+curl -X POST https://app.nicchon.com/api/links.php \
+  -H "Authorization: Bearer $APP_LINKS_ADMIN_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "slug": "meu-novo-link",
+    "titulo": "Meu Novo Link",
+    "descricao": "...",
+    "url": "https://outro-dominio.com",
+    "categoria": "Externo",
+    "ordem": 100
+  }'
+
+# Desativar (soft-delete, mantém histórico)
+curl -X DELETE "https://app.nicchon.com/api/links.php?slug=meu-novo-link" \
+  -H "Authorization: Bearer $APP_LINKS_ADMIN_TOKEN"
+```
+
+**Futuro:** página admin em `nicchon.com/painel/app-links/` com CRUD visual. Não foi feita ainda — quando virar dor, criamos.
+
+### Renomear um mini-app (mudar slug)
+
+```bash
+git mv mini-apps/old-slug mini-apps/new-slug
+# Editar manifest.json: "slug": "new-slug"
+git commit && git push
+```
+
+⚠️ Vai quebrar links existentes apontando pra `/old-slug/`. Se for público, adicione um redirect no `app/.htaccess`:
+
+```apache
+RewriteRule ^old-slug(/.*)?$ /new-slug$1 [R=301,L]
+```
+
+---
+
 ## Plano de implementação completo
 
 Veja [`tarefas-md/app-nicchon-reformulacao.md`](tarefas-md/app-nicchon-reformulacao.md).
