@@ -115,6 +115,11 @@
     document.documentElement.setAttribute('data-theme', nxt);
     try { localStorage.setItem('app-theme', nxt); } catch (e) {}
   }
+  // CSP script-src 'self' proíbe inline onclick — listener é a saída.
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.querySelector('.theme-toggle');
+    if (btn) btn.addEventListener('click', toggleTheme);
+  });
 </script>
 
 </body>
