@@ -188,7 +188,6 @@ hr { border: 0; border-top: 1px solid var(--color-border); margin: 6rem 0 4rem; 
 .card {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 12px;
@@ -196,12 +195,31 @@ hr { border: 0; border-top: 1px solid var(--color-border); margin: 6rem 0 4rem; 
   position: relative;
   overflow: hidden;
 }
+.card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+.card:not(.card-with-cover) .card-body { padding: 1.5rem; }
 .card:hover {
   transform: translateY(-2px);
   border-color: var(--color-bordo);
   background: var(--color-surface-2);
 }
 .card:hover .card-arrow { transform: translate(2px, -2px); color: var(--color-bordo); }
+
+/* Cover (imagem opcional do card) */
+.card-cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-surface-2);
+  border-bottom: 1px solid var(--color-border);
+}
+.card-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.card-with-cover:hover .card-cover img { transform: scale(1.03); }
 
 .card-category {
   font-family: var(--font-mono);
@@ -262,6 +280,52 @@ hr { border: 0; border-top: 1px solid var(--color-border); margin: 6rem 0 4rem; 
   font-size: 0.5625rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Filtros por categoria */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 1.5rem;
+}
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.875rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.filter-chip:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border-muted);
+}
+.filter-chip.active {
+  background: var(--color-bordo);
+  border-color: var(--color-bordo);
+  color: var(--color-bg);
+}
+.filter-count {
+  font-size: 0.5625rem;
+  background: var(--color-surface-2);
+  color: var(--color-text-dim);
+  padding: 0.0625rem 0.4rem;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+.filter-chip.active .filter-count {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--color-bg);
 }
 .card-tag-warn {
   border-color: var(--color-bordo);

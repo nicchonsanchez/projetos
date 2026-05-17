@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2024",
   "status": "Concluído",
-  "descricao": "Calculadora de volume de pilha de lenha (estéreo) a partir de dimensões. Aplicação prática florestal."
+  "descricao": "Calculadora de volume de pilha de lenha (estéreo) a partir de dimensões. Aplicação prática florestal.",
+  "oculto": true
 }

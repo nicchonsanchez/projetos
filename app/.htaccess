@@ -42,6 +42,7 @@ RedirectMatch 403 /\.github
 # ============================================================
 DirectoryIndex index.html index.php
 Options -Indexes
+ErrorDocument 404 /404.html
 
 # ============================================================
 # Cache de assets estáticos

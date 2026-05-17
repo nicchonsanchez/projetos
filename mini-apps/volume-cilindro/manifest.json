@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2024",
   "status": "Concluído",
-  "descricao": "Calculadora de volume de cilindro. Fórmula clássica V = π·r²·h, com fórmula renderizada como imagem."
+  "descricao": "Calculadora de volume de cilindro. Fórmula clássica V = π·r²·h, com fórmula renderizada como imagem.",
+  "oculto": true
 }
