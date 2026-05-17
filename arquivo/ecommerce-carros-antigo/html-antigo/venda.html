@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <!-- Personalização -->
+        <title>Venda de Carros | Projeto de portifólio de Nicchon Sanchez</title>
+        <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+        <meta name="theme-color" content="#252525">
+    
+        <!-- Config -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <!-- CEO -->
+        <meta property="og:image" itemprop="image" content="http://nicchon.com/images/icone-meta.png">
+        <meta name="description" content="Este site de odontologia é um projeto do portifólio de desenvolvimento web de Nicchon Sanchez">
+        <meta name="keywords" content="palavra,separadas,por,virgula">
+        <meta name="author" content="Nicchon Sanchez Pinto">
+        <meta name="title" content="Nicchon Sanchez Pinto">
+    
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/style.css">
+    
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+        <!-- Fontes -->
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <header class="gray-shadow">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="Logo">
+            </div>
+    
+            <nav class="desktop">
+                <ul>
+                    <li><a href="index.html" class="scrollSuave">Home</a></li>
+                    <li class="selected"><a href="venda.html" class="scrollSuave">Venda</a></li>
+                    <li><a href="sobre-nos.html" class="scrollSuave">Sobre nós</a></li>
+                    <li><a href="index.html#contato" class="scrollSuave">Contato</a></li>
+                </ul>
+            </nav>
+            <!-- /.desktop -->
+            <nav class="mobile">
+                <ul>
+                    <li><a href="index.html" class="scrollSuave"><div>Home</div></a></li>
+                    <li class="selected"><a href="venda.html" class="scrollSuave"><div>Venda</div></a></li>
+                    <li><a href="sobre-nos.html" class="scrollSuave"><div>Sobre nós</div></a></li>
+                    <li><a href="index.html#contato" class="scrollSuave"><div>Contato</div></a></li>
+                </ul>
+            </nav>
+            <!-- /.mobile -->
+            <div class="clear"></div><!-- /.clear -->
+        </div>
+        <!-- /.container -->
+    </header>
+
+    <!--------------------- SECTIONS --------------------->
+
+    <section class="venda">
+        <div class="container">
+            <div class="line-titulo">
+                <h2>Venda</h2>
+            </div>
+            <!-- /.line-titulo -->
+
+            <aside class="sidebar">
+				<div class="search-preco">
+					<h2>Filtre por preço</h2>
+					<div class="barra-preco">
+						<div class="barra-preco-fill"></div><!--barra-preco-fill-->
+						<div class="pointer-barra"></div>
+					</div><!--barra-preco-->
+					<div class="valor-pesquisa">
+						<p>R$0,00</p>
+						<p>R$70.000,00</p>
+						<div class="clear"></div><!--/.clear-->
+					</div><!--valor-pesquisa-->
+				</div><!--/.search-preco-->
+
+				<div class="search-caracteristicas">
+					<h2>Filtre por ano</h2>
+					<form>
+                        <div class="form-venda-wraper">
+                            <input type="checkbox" id="item1" />
+                            <label for="item1">
+                                <div class="circle"></div>
+                            </label><!--item-->
+                            <span>Todas as décadas</span>
+                        </div><!--form-venda-wraper-->
+
+
+                        <div class="form-venda-wraper">
+                            <input type="checkbox" id="item2" />
+                            <label for="item2">
+                                <div class="circle"></div>
+                            </label>
+                            <span>1960 - 1970</span>
+                        </div><!--form-venda-wraper-->
+
+
+                        <div class="form-venda-wraper">
+                            <input type="checkbox" id="item3" />
+                            <label for="item3">
+                                <div class="circle"></div>
+                            </label>
+                            <span>1971 - 1990</span>
+                        </div><!--form-venda-wraper-->
+
+                        <div class="form-venda-wraper">
+                            <input type="checkbox" id="item4" />
+                            <label for="item4">
+                                <div class="circle"></div>
+                            </label>
+                            <span>1991 - 2000</span>
+                        </div><!--form-venda-wraper-->
+					</form>
+				</div><!--/.search-caracteristicas-->
+            </aside><!--sidebar-->
+
+            <div class="vitrine">
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro1.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Karmann-ghia</h2>
+                    <p>1.6 8v, Gasolina, 2P, Manual, 1969</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro2.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Chevrolet Opala</h2>
+                    <p>Bancos de couro, vermelho, 2.5, 1980</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro3.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Gol GTs</h2>
+                    <p>Turbo, gasolina, personalizado, 1994</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro1.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Karmann-ghia</h2>
+                    <p>1.6 8v, Gasolina, 2P, Manual, 1969</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro2.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Chevrolet Opala</h2>
+                    <p>Bancos de couro, vermelho, 2.5, 1980</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro3.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Gol GTs</h2>
+                    <p>Turbo, gasolina, personalizado, 1994</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro1.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Karmann-ghia</h2>
+                    <p>1.6 8v, Gasolina, 2P, Manual, 1969</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro2.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Chevrolet Opala</h2>
+                    <p>Bancos de couro, vermelho, 2.5, 1980</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro3.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Gol GTs</h2>
+                    <p>Turbo, gasolina, personalizado, 1994</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro1.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Karmann-ghia</h2>
+                    <p>1.6 8v, Gasolina, 2P, Manual, 1969</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro2.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Chevrolet Opala</h2>
+                    <p>Bancos de couro, vermelho, 2.5, 1980</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+                <div class="single">
+                    <div class="img" style="background-image: url(images/carro3.jpg);"></div>
+                    <!-- /.img -->
+                    <h2>Volkswagem Gol GTs</h2>
+                    <p>Turbo, gasolina, personalizado, 1994</p>
+                    <a href="informacoes/carro-id1.html">
+                        <div class="red-button">Mais detalhes</div>
+                    </a>
+                </div>
+                <!-- /.single -->
+            </div>
+            <!-- /.vitrine -->
+
+
+
+            <div class="clear"></div><!-- /.clear -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <!-- /.venda -->
+
+    <!--------------------- Final SECTIONS --------------------->
+
+    <footer class="rodape">
+        <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html" class="scrollSuave">Home</a></li>
+                <li class="selected"><a href="venda.html" class="scrollSuave">Venda</a></li>
+                <li><a href="sobre-nos.html" class="scrollSuave">Sobre nós</a></li>
+                <li><a href="index.html#contato" class="scrollSuave">Contato</a></li>
+            </ul>
+            <div class="clear"></div><!-- /.clear -->
+        </nav>
+        </div><!--container-->
+        <footer>
+            <p>
+                2023 © Todos os direitos reservados | Feito por: <a href="http://nicchon.com" target="_blank" rel="noopener noreferrer">www.nicchon.com</a>
+            </p>
+        </footer>
+    </footer>
+    <!-- /.rodape -->
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>

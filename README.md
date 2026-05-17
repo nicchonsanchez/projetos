@@ -22,7 +22,7 @@ Substitui — e aposenta — `projetos.nicchon.com`.
 │   │   └── schema.sql      DDL da tabela app_links
 │   └── .htaccess           Headers de segurança + HTTPS forçado
 │
-├── mini-apps/              20 projetos embutidos (cada um com manifest.json)
+├── mini-apps/              22 projetos embutidos (cada um com manifest.json)
 │   ├── calculadora/
 │   ├── jokenpo/
 │   ├── ...

@@ -1,0 +1,527 @@
+/* Config */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html, body{
+    height: 100%;
+}
+a{
+    text-decoration: none;
+    color: unset;
+}
+.w100{
+    width: 100%;
+}
+.w50{
+    width: calc(50% - 3px);
+    display: inline-block;
+}
+
+.mobile{
+    display: none;
+}
+
+.clear{
+    clear: both;
+}
+
+.container{
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+/* SLICK SLIDE */
+.slick-dotted ul{
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+    margin-top: 50px;
+}
+.slick-dotted ul li{
+    display: inline-block;
+    margin: 0 7px;
+}
+.slick-dotted button:focus{
+    outline: 0;
+}
+.slick-dotted li button{
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border-width: 0;
+    color: #d8d8d8;
+    background-color: #d8d8d8;
+    opacity: 1;
+}
+li.slick-active button{
+    background-color: #688293;
+    color: #688293;
+}
+.slick-slide:focus{outline: none;}
+
+
+
+/* Header */
+header{
+    padding: 20px 2%;
+}
+
+header .logo{
+    float: left;
+    width: 240px;
+    max-width: 80%;
+}
+header .logo img{
+    width: 100%;
+}
+
+header nav{
+    float: right;
+}
+header nav ul{
+    padding: 8px 0;
+    list-style-type: none;
+}
+
+    /* mobile */
+    header nav.mobile{
+        height: 28px;
+        width: 28px;
+        background: url('../imagens/menu-mobile.png') center no-repeat;
+        background-size: contain;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+    header nav.mobile ul{
+        display: none;
+        background-color: #576975;
+        border-bottom: 2px solid #40505a;
+        padding: 5px 0;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+    }
+
+header nav ul li{
+    transition: 0.5s;
+    float: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 2px 20px;
+}
+    /* desktop */
+    header nav.desktop ul li:hover a{
+        color: #576975;
+    }
+
+    /* mobile */
+    header nav.mobile ul li{
+        float: none;
+        padding: 10px 2%;
+        text-align: center;
+    }
+    header nav.mobile ul li:hover{
+        background-color: #40505a;
+    }
+
+header ul a{
+    color: #b4b4b4;
+}
+
+/* Mosaico */
+.mosaico-single{
+    float: left;
+    width: calc(100% / 6);
+}
+
+.img-mosaico-single{
+    width: 100%;
+    padding-top: 100%;
+    background-color: #ccc;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 5px solid white;
+}
+
+
+
+/* Serviços */
+section.servicos>.container{
+    max-width: 800px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    transform: translateY(-50px);
+}
+
+section.servicos .box-servico h2{
+    color: white;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: normal;
+}
+section.servicos .box-servico:nth-child(2n) h2{
+    font-size: 15px;
+}
+section.servicos .box-servico p{
+    color: white;
+    font-size: 12px;
+    font-weight: normal;
+    margin-top: 8px;
+}
+
+section.servicos .box-servico:nth-of-type(2n-1){
+    width: 30%;
+    padding: 40px 2% 60px;
+    background-color: #576975;
+    background-image: url('../imagens/icone_dente.png');
+    background-position: center calc(100% - 15px);
+    background-repeat: no-repeat;
+}
+section.servicos .box-servico:nth-of-type(2){
+    width: 40%;
+    padding: 55px 2%;
+    background-color: #688293;
+}
+
+/* Perfil do profissional */
+section.perfil > .container{
+    max-width: 800px;
+}
+section.perfil .perfil-wraper{
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+}
+section.perfil .perfil-wraper .img-perfil{
+    vertical-align: middle;
+    background: url('../imagens/img_perfil.png') center no-repeat;
+    background-size: contain;
+}
+section.perfil .perfil-wraper .texto-perfil{
+    padding: 0 20px;
+}
+section.perfil .perfil-wraper .texto-perfil h2{
+    color: #698293;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+section.perfil .perfil-wraper .texto-perfil p{
+    color: #4b4b4b;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+
+
+/* Video */
+section.video{
+    padding: 50px 0;
+    text-align: center;
+}
+section.video .box-video{
+    float: left;
+    background-color: #ccc;
+    width: 33.3%;
+    height: calc(33.3vw * 0.6);
+    max-height: 360px;
+    border: 5px solid white;
+}
+section.video .box-video iframe{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* Tratamentos */
+section.tratamentos{
+    padding: 70px 0;
+    background-color: #f3f3f3;
+}
+section.tratamentos .container{
+    padding: 50px 0;
+}
+section.tratamentos > h2{
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #698293;
+    text-align: center;
+}
+section.tratamentos .tratamento-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+section.tratamentos .tratamento-single{
+    padding: 20px;
+}
+section.tratamentos .tratamento-single h2{
+    font-size: 18px;
+    color: #737373;
+}
+section.tratamentos .tratamento-single p{
+    font-size: 13px;
+    color: #b4b4b4;
+    padding: 10px 0;
+}
+
+
+
+/* Depoimentos */
+section.depoimentos{
+    padding: 70px 0;
+}
+section.depoimentos .container{
+    padding: 70px 0;
+    text-align: center;
+    max-width: 500px;
+}
+section.depoimentos > h2{
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #698293;
+    text-align: center;
+}
+section.depoimentos .depoimento-single{
+    text-align: center;
+    color: #b4b4b4;
+    padding: 0 2%;
+}
+section.depoimentos .depoimento-single quote{
+    font-size: 15px;
+}
+section.depoimentos .depoimento-single .nome-depoimento{
+    padding: 8px 0;
+}
+section.depoimentos .nome-depoimento img{
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    display: inline-block;
+}
+section.depoimentos .nome-depoimento span{
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: 70%;
+    margin-left: 5px;
+}
+
+
+
+/* Redes sociais */
+section.redes-sociais .rede-social{
+	width: 100%;
+	text-align: center;
+	padding:40px 0;
+}
+.instagram{
+    background: #98a5ae;
+}
+.facebook{
+    background:  #576975;
+}
+
+section.redes-sociais .rede-social p{
+	line-height: 23px;
+	color: white;
+	padding:10px 0;
+	font-size: 13px;
+}
+
+section.redes-sociais .mosaico{
+	width: 100%;
+}
+section.redes-sociais .mosaico .img-mosaico-redes-sociais{
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+section.redes-sociais .mosaico div[class*="img"]{
+    float: left;
+	width: calc(100% / 9);
+	padding-top: calc(100% / 9);
+	background-color: rgb(210,210,210);
+	border:6px solid white;
+}
+
+
+
+/* Contato */
+section.contato{
+    padding: 60px 2%;
+    background-color: #f3f3f3;
+}
+section.contato > h2{
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #698293;
+    text-align: center;
+}
+section.contato form{
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto;
+}
+section.contato form .form-wraper{
+    margin-top: 8px;
+    padding: 0 5px;
+    text-align: center;
+}
+section.contato form .form-wraper *{
+    width: 100%;
+    display: block;
+}
+section.contato form .form-wraper label{
+    font-size: 15px;
+    color: #b4b4b4;
+    text-align: left;
+}
+section.contato form .form-wraper input,
+section.contato form .form-wraper textarea{
+    min-height: 35px;
+    line-height: 35px;
+    padding-left: 9px;
+    outline-color: #698293;
+    border: 1px solid #dadada;
+    margin-top: 5px;
+    resize: none;
+}
+
+section.contato form .form-wraper input[type="submit"]{
+    background-color: #688293;
+    color: white;
+    border: none;
+    padding: 3px;
+    width: 120px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+
+/* Footer */
+footer{
+	padding:40px 0 0;
+	background-color: #688293;
+    color: white;
+}
+footer .container{
+    padding: 0 2% 40px;
+}
+
+footer .col{
+	display: inline-block;
+	width: calc(33.3% - 3px);
+    vertical-align: top;
+}
+
+footer .col h2{
+	font-weight: normal;
+	font-size: 18px;
+}
+
+footer .col p{
+	margin-top:8px;
+	font-size: 14px;
+}
+footer.copy{
+    background-color: #4a5a67;
+    padding: 10px 2%;
+}
+footer.copy p{
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    /* Geral */
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+
+    /* Serviços */
+    section.servicos .container{
+        flex-direction: column;
+    }
+    section.servicos .container div.box-servico{
+        width: 94%;
+        max-width: 350px;
+        padding: 30px 2% 45px;
+    }
+    section.servicos .container div.box-servico:nth-of-type(2n){
+        max-width: 380px;
+        padding: 50px 2%;
+    }
+
+    /* Perfil */
+    section.perfil .perfil-wraper{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 15px;
+    }
+
+    section.perfil .img-perfil{
+        height: 130vw;
+        max-height: 450px;
+    }
+    section.perfil .texto-perfil h2{
+        text-align: center;
+    }
+    section.perfil .texto-perfil p{
+        padding: 10px 30px ;
+    }
+
+    /* Videos */
+    section.video .box-video{
+        float: none;
+        display: inline-block;
+        background-color: #ccc;
+        width: 100%;
+        max-width: 500px;
+        height: calc(100vw * 0.6);
+        max-height: 300px;
+        border-width: 5px 10px;
+    }
+
+    /* Tratamentos */
+    section.tratamentos .tratamento-container{
+        grid-template-columns: 1fr;
+    }
+
+    /* Contato */
+    .w50{
+        width: 100%;
+    }
+
+    /* Footer */
+    footer .col{
+        margin-bottom: 25px !important;
+    }
+    footer .col,
+    footer.copy p{
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        max-width: 400px;
+    }
+}

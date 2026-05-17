@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans';
+}
+
+html, body{
+    height: 100%;
+}
+
+
+/* DIVS GERAIS */
+.container{
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+.clear{
+    clear: both;
+}
+/**************** */
+
+header{
+    padding: 10px 2% 30px;
+    background-color: #e2e2e2;
+}
+
+[class^="logo"]{
+    width: 150px;
+    height: 70px;
+    background-size: contain !important;
+}
+
+.logo-1{
+    float: left;
+    background: url(../images/logo1.png) center no-repeat;
+}
+.logo-2{
+    float: right;
+    background: url(../images/logo2.png) center no-repeat;
+}
+
+section.cover-form{
+    width: 100%;
+    padding: 0 2%;
+}
+.bg{
+    height: 600px;
+    background: url(../images/bg-form.jpg);
+    background-size: cover;
+}
+.form-container{
+    float: right;
+    width: 400px;
+    height: 110%;
+    position: relative;
+    top: -5%;
+    background: rgba(250, 250, 250, 0.7);
+    box-shadow: 1px 1px 2px 1px rgb(180, 180, 180);
+    margin-right: 40px;
+    z-index: 1;
+}
+.form-container h2{
+    padding: 20px 15px;
+    color: black;
+    font-weight: normal;
+    font-size: 18px;
+    text-transform: uppercase;
+    background-color: rgb(234, 236, 239);
+}
+
+.form-container form{
+    margin-top: 8px;
+    padding: 15px;
+}
+.form-container form p{
+    font-size: 13px;
+    color: #525252;
+}
+.form-wraper:not(:first-child){
+    margin-top: 40px;
+}
+.form-wraper:last-child{
+    margin-top: 20px;
+}
+
+.form-container form input{
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 45px;
+    line-height: 45px;
+    padding-left: 20px;
+}
+.form-container form input[type="submit"]{
+    background-color: #033c50;
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border: 0;
+}
+
+
+
+section.chamada{
+    text-align: center;
+    position: relative;
+}
+section.chamada .container{
+    background-color: #2a536f;
+    padding: 50px 0;
+    color: white;
+}
+section.chamada h2{
+    display: inline-block;
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: uppercase;
+    max-width: 700px;
+    width: 96%;
+    margin-bottom: 10px;
+}
+
+
+
+.mosaico .item{
+    display: flex;
+    color: white;
+}
+.mosaico .item:nth-child(2n){
+    flex-direction: row-reverse;
+}
+.mosaico .item .texto{
+    padding: 60px 40px;
+    width: 40%;
+    background-color: #4080af;
+}
+.mosaico .item .foto-mosaico{
+    width: 60%;
+    background-size: cover !important;
+}
+
+
+footer{
+    text-align: center;
+    padding: 40px 2% 20px;
+    color: #424242;
+}
+footer p{
+    margin: 5px;
+}
+footer img{
+    width: 120px;
+    margin: 16px;
+}
+
+footer.direitos-reservados{
+    background: #e2e2e2;
+    padding: 5px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .mosaico .item{
+        display: block;
+    }
+    .mosaico .item > *{
+        width: 100% !important;
+    }
+    .mosaico .item .foto-mosaico{
+        height: 56vw;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    header{
+        text-align: center;
+    }
+    [class^="logo"]{
+        float: none;
+        margin: 10px auto 0;
+    }
+
+    .form-container{
+        float: none;
+        width: 400px;
+        max-width: 94%;
+        position: relative;
+        top: -5%;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-right: initial;
+    }
+
+    section.cover-form{
+        padding: 0;
+    }
+    
+}
