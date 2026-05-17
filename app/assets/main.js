@@ -83,3 +83,9 @@ function toggleTheme() {
   document.documentElement.setAttribute("data-theme", next);
   try { localStorage.setItem("app-theme", next); } catch (e) {}
 }
+
+// CSP `script-src 'self'` proíbe inline `onclick=`. Listener é o jeito.
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".theme-toggle");
+  if (btn) btn.addEventListener("click", toggleTheme);
+});

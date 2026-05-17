@@ -319,4 +319,9 @@ hr { border: 0; border-top: 1px solid var(--color-border); margin: 6rem 0 4rem; 
   hr { margin: 4rem 0 2.5rem; }
   .container { padding: 2rem 1.25rem 4rem; }
   .hero h1 { font-size: 2.5rem; }
+  .site-header { padding: 1rem 1.25rem; }
+}
+@media (max-width: 420px) {
+  .back-link-text { display: none; }
+  .back-link { padding: 0.5rem; }
 }
