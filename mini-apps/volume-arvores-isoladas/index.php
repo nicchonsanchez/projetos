@@ -64,7 +64,8 @@
     app.nicchon.com
   </a>
   <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Alternar tema claro/escuro" title="Alternar tema">
-    <span id="theme-icon" aria-hidden="true"></span>
+    <svg class="theme-icon theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    <svg class="theme-icon theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
   </button>
 </header>
 
@@ -106,24 +107,14 @@
 </section>
 
 <script>
-  // Toggle de tema. Persiste em localStorage com a mesma chave do app.nicchon.com.
-  var ICON_MOON = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
-  var ICON_SUN  = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
-
-  function setThemeIcon() {
-    var el = document.getElementById('theme-icon');
-    if (!el) return;
-    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    el.innerHTML = isDark ? ICON_SUN : ICON_MOON;
-  }
+  // Toggle de tema. Os 2 SVGs (lua/sol) ficam inline no HTML e o CSS
+  // decide qual mostrar via [data-theme="dark"]. Aqui só alternamos.
   function toggleTheme() {
     var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     var nxt = cur === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', nxt);
     try { localStorage.setItem('app-theme', nxt); } catch (e) {}
-    setThemeIcon();
   }
-  document.addEventListener('DOMContentLoaded', setThemeIcon);
 </script>
 
 </body>
