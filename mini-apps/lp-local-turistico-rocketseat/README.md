@@ -1,0 +1,8 @@
+# lp-local-turistico-rocketseat
+
+Cópia deployada do repo individual.
+
+- **Repo de origem**: https://github.com/nicchonsanchez/projeto-lp-local-turistico--rocketseat
+- **Clone de desenvolvimento (notebook)**: `Aulas/Desenvolvimento web/Fullstack - Rocketseat/Projeto - Local turistico/`
+
+Esta pasta aqui (no monorepo `nicchonsanchez/projetos`) existe **apenas pra deploy** em `https://app.nicchon.com/lp-local-turistico-rocketseat/`. Não desenvolva aqui — desenvolva no clone do repo individual e propague pra esta pasta quando for fazer release.
