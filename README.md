@@ -16,10 +16,12 @@ Substitui — e aposenta — `projetos.nicchon.com`.
 │   │   ├── style.css       Design tokens v2026 (pergaminho + bordô + azul-noite)
 │   │   └── main.js         Fetch /api/projects.php + /api/links.php
 │   ├── api/
-│   │   ├── projects.php    Varre mini-apps/ e devolve catálogo (sem DB)
+│   │   ├── projects.php    Lista 3 fontes: mini-apps/, external-manifests/, e descobre órfãos no servidor
 │   │   ├── links.php       CRUD MySQL de links externos (autenticado)
 │   │   ├── links.php.template   Template com placeholders, injetado no deploy
 │   │   └── schema.sql      DDL da tabela app_links
+│   ├── external-manifests/ Declarações de SUB-DEPLOYS (outros repos entregam em /app.nicchon.com/{slug}/)
+│   │   └── convite-naty.json
 │   └── .htaccess           Headers de segurança + HTTPS forçado
 │
 ├── mini-apps/              22 projetos embutidos (cada um com manifest.json)
@@ -68,7 +70,49 @@ Pra **ocultar** um projeto da home sem deletar:
 
 ### Pastas que NÃO são mini-apps
 
-Coisa que **não tem `manifest.json`** é ignorada pelo `projects.php`. Use isso pra rascunhos: crie a pasta, trabalhe, e adicione o manifest só quando estiver pronto.
+Coisa que **não tem `manifest.json`** é ignorada como mini-app pelo `projects.php`. Use isso pra rascunhos: crie a pasta, trabalhe, e adicione o manifest só quando estiver pronto.
+
+---
+
+## Os 3 tipos de "coisa" no app.nicchon.com
+
+| Tipo | Onde mora o código | Onde declara | Onde aparece |
+|---|---|---|---|
+| **Mini-app embutido** (jokenpo, calculadora...) | `mini-apps/{slug}/` neste repo | `manifest.json` na própria pasta | `/{slug}/` no app, listado em "Projetos" |
+| **Sub-deploy** (convite-naty, futuros) | outro repo, com workflow próprio que entrega em `/app.nicchon.com/{slug}/` no servidor | `app/external-manifests/{slug}.json` neste repo | mesma seção "Projetos", badge "Sub-deploy" |
+| **Link externo** (Sanctius, KTask, GitHub...) | site/sistema em outro domínio | tabela MySQL `app_links` (admin via API) | seção "Links externos" |
+
+### Quando criar um external-manifest
+
+Cenário: o `convite-aniversario-naty` é projeto Next.js+PHP com workflow próprio (`SamKirkland/FTP-Deploy-Action`) que sobe direto pra `/app.nicchon.com/convite-naty/`. Esse código **não vive aqui** mas a URL aparece no app.nicchon.com.
+
+Solução: `app/external-manifests/convite-naty.json` declara que o slug existe, com título/descrição/categoria. O `projects.php` mostra junto com os mini-apps embutidos.
+
+```json
+{
+  "slug": "convite-naty",
+  "titulo": "Convite — 15 anos da Natália",
+  "categoria": "Site",
+  "ano": "2026",
+  "status": "Em produção",
+  "descricao": "...",
+  "url": "/convite-naty/",
+  "repoUrl": "https://github.com/nicchonsanchez/convite-aniversario-naty",
+  "deploy_proprio": true
+}
+```
+
+### Auto-descoberta de órfãos
+
+O `projects.php` faz uma 3ª passada varrendo pastas físicas em `/app.nicchon.com/` no servidor. Se achar uma pasta **sem manifest declarado** (nem em `mini-apps/` nem em `external-manifests/`), ela é incluída no agregador com:
+
+- **Badge vermelha "Sem manifest"** no card
+- **Style itálico + opacidade reduzida**
+- **Header HTTP `X-App-Orphans: slug1, slug2`** pra monitoring
+
+Isso impede que sub-deploys "invisíveis" sumam — você vê o card como aviso pra adicionar o manifest declarativo.
+
+**Blacklist** (não considera órfã): `api`, `assets`, `external-manifests`, `redirects`, `arthur` (WP hospedado), `cgi-bin`, qualquer pasta começando com `_` ou `.`.
 
 ---
 

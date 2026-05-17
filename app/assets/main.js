@@ -8,8 +8,12 @@ function makeCard(item) {
   const el = document.createElement("a");
   el.href = item.url;
   el.className = "card";
-  if (item.external) el.target = "_blank";
-  if (item.external) el.rel = "noopener noreferrer";
+  if (item._orphan) el.classList.add("card-orphan");
+  if (item.sub_deploy) el.classList.add("card-sub-deploy");
+  if (item.external) {
+    el.target = "_blank";
+    el.rel = "noopener noreferrer";
+  }
   el.innerHTML = `
     ${SVG_ARROW}
     <p class="card-category">${escapeHTML(item.categoria || "")}</p>
@@ -18,6 +22,8 @@ function makeCard(item) {
     <p class="card-meta">
       ${item.status ? `<span class="status-badge" title="${escapeHTML(item.status)}"></span>${escapeHTML(item.status)}` : ""}
       ${item.ano ? `· ${escapeHTML(item.ano)}` : ""}
+      ${item.sub_deploy ? `· <span class="card-tag">Sub-deploy</span>` : ""}
+      ${item._orphan ? `· <span class="card-tag card-tag-warn">Sem manifest</span>` : ""}
     </p>
   `;
   return el;

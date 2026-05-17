@@ -1,0 +1,12 @@
+{
+  "slug": "convite-naty",
+  "titulo": "Convite — 15 anos da Natália",
+  "categoria": "Site",
+  "ano": "2026",
+  "status": "Em produção",
+  "descricao": "Convite digital pro aniversário de 15 anos da Natália (21/07/2026). Next.js estático + PHP + MySQL + WhatsApp via Evolution.",
+  "url": "/convite-naty/",
+  "repoUrl": "https://github.com/nicchonsanchez/convite-aniversario-naty",
+  "deploy_proprio": true,
+  "notas": "Sub-deploy: o código vive em github.com/nicchonsanchez/convite-aniversario-naty e o workflow daquele repo faz upload direto pra /app.nicchon.com/convite-naty/. Esta manifest declara a existência pro agregador."
+}
