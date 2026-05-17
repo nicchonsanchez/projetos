@@ -71,3 +71,30 @@ async function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+// =============================================================
+// Toggle de tema (light/dark). O script anti-FOUC no <head> já
+// aplicou o tema correto antes do CSS — aqui só tratamos o clique
+// no botão e o ícone exibido.
+// =============================================================
+const ICON_MOON = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+const ICON_SUN = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
+
+function setThemeIcon() {
+  const el = document.getElementById("theme-icon");
+  if (!el) return;
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  // No light mostramos a lua (clique vai pro dark). No dark mostramos o sol.
+  el.innerHTML = isDark ? ICON_SUN : ICON_MOON;
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  const next = current === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try { localStorage.setItem("app-theme", next); } catch (e) {}
+  setThemeIcon();
+}
+
+// Aplica ícone inicial assim que o DOM estiver pronto.
+document.addEventListener("DOMContentLoaded", setThemeIcon);

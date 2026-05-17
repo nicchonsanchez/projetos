@@ -4,7 +4,7 @@
    "Pergaminho + bordô + azul-noite"
    ============================================= */
 
-:root {
+:root, [data-theme="light"] {
   --color-bg:           #F5F0E6;
   --color-surface:      #EFE8D9;
   --color-surface-2:    #E8DFCE;
@@ -23,9 +23,26 @@
   --font-mono:  "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 
+/* Dark — paleta consistente com nicchon.com/painel */
+[data-theme="dark"] {
+  --color-bg:           #11141C;
+  --color-surface:      #171B26;
+  --color-surface-2:    #1E2330;
+  --color-border:       #252B3B;
+  --color-border-muted: #3A4259;
+
+  --color-bordo:        #C4604E;
+  --color-bordo-soft:   #A14A3A;
+
+  --color-text:         #EDE7D7;
+  --color-text-muted:   #BFB8A4;
+  --color-text-dim:     #8B8775;
+}
+
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; background: var(--color-bg); color-scheme: light; }
+html { scroll-behavior: smooth; background: var(--color-bg); color-scheme: light; transition: background-color 0.2s ease; }
+html[data-theme="dark"] { color-scheme: dark; }
 
 body {
   margin: 0;
@@ -78,6 +95,10 @@ hr { border: 0; border-top: 1px solid var(--color-border); margin: 6rem 0 4rem; 
   max-width: 56rem;
   width: 100%;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 .back-link {
   display: inline-flex;
@@ -91,6 +112,29 @@ hr { border: 0; border-top: 1px solid var(--color-border); margin: 6rem 0 4rem; 
   transition: color 0.2s;
 }
 .back-link:hover { color: var(--color-bordo); }
+
+/* Toggle de tema (lua/sol) */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-dim);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border-muted);
+}
+.theme-toggle svg { display: block; }
 
 /* Container */
 .container {
