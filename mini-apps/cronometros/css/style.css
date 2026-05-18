@@ -1,124 +1,421 @@
+/* =========================================================
+   Cronômetros — identidade v2026
+   Mesma paleta de nicchon.com / app.nicchon.com
+   ========================================================= */
+
+:root, [data-theme="light"] {
+    --color-bg:           #F5F0E6;
+    --color-surface:      #EFE8D9;
+    --color-surface-2:    #E8DFCE;
+    --color-border:       #DCD2BD;
+    --color-border-muted: #C9BC9F;
+    --color-bordo:        #5C1F1F;
+    --color-bordo-soft:   #4A1717;
+    --color-text:         #1A2238;
+    --color-text-muted:   #2C3554;
+    --color-text-dim:     #6B7090;
+    --color-running:      #1F6F3A; /* verde sutil pra "rodando" — não-bordô pra diferenciar de "terminado" */
+
+    --font-serif: "Crimson Pro", ui-serif, Georgia, serif;
+    --font-sans:  "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:  "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+
+[data-theme="dark"] {
+    --color-bg:           #11141C;
+    --color-surface:      #171B26;
+    --color-surface-2:    #1E2330;
+    --color-border:       #252B3B;
+    --color-border-muted: #3A4259;
+    --color-bordo:        #C4604E;
+    --color-bordo-soft:   #A14A3A;
+    --color-text:         #EDE7D7;
+    --color-text-muted:   #BFB8A4;
+    --color-text-dim:     #8B8775;
+    --color-running:      #7AC487;
+}
+
+
 /* Framework */
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    color-scheme: light;
+    background: var(--color-bg);
+    scroll-behavior: smooth;
+}
+html[data-theme="dark"] { color-scheme: dark; }
+
+body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-text);
+    background: var(--color-bg);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "kern", "liga", "calt";
 }
 
-body{
-    background: #000;
-    color: white;
-}
+::selection { background: var(--color-bordo); color: var(--color-bg); }
+:focus-visible { outline: 2px solid var(--color-bordo); outline-offset: 2px; border-radius: 4px; }
+
+/* Scrollbar pergaminho-friendly */
+::-webkit-scrollbar { width: 10px; height: 10px; background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-border-muted); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-dim); }
 
 
-
-
-
-/* Scrollbar */
-::-webkit-scrollbar-track {
-    background-color: #232323;
-}
-
-::-webkit-scrollbar {
-    background-color: #232323;
-    width: 10px;	
-    height: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #fff;
-}
-
-::-webkit-scrollbar-track-piece {
-    background-color: #232323;
-}
-
-
-
-
-section.cronometros{
-    width: 96%;
-    max-width: 1000px;
+/* =========================================================
+   HEADER (back-link + theme-toggle)
+   ========================================================= */
+.site-header {
+    max-width: 64rem;
+    width: 100%;
     margin: 0 auto;
-    padding: 50px 2%;
-}
-
-section.cronometros > header{
-    margin-bottom: 30px;
-}
-section.cronometros > header h2{
-    font-size: 2.6em;
-    font-weight: 300;
-}
-
-section.cronometros .cronometros-grupo{
+    padding: 1.5rem;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
     align-items: center;
-    gap: 20px
+    justify-content: space-between;
+    gap: 1rem;
 }
-
-article.cronometro{
-    position: relative;
-    display: inline-block;
-    max-width: 100%;
-    padding: 32px 32px 46px;
-    background-image: linear-gradient(85deg, #434343, #262626);
-    box-shadow: -16px 0 32px rgba(0,0,0,0.5);
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
     border-radius: 8px;
-    transition: transform 250ms;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.back-link:hover {
+    background: var(--color-surface);
+    color: var(--color-bordo);
+    border-color: var(--color-border-muted);
 }
 
-article.cronometro .excluir{
-    position: absolute;
-    cursor: pointer;
-    top: 0px;
-    right: 10px;
-    font-size: 2em;
-}
-article.cronometro header{
-    margin-bottom: 20px;
-}
-article.cronometro header .titulo h2{
-    font-size: 1.4em;
-    display: inline;
-}
-article.cronometro i.btn-editar{
-    cursor: pointer;
-    font-size: 14px;
-    margin-left: 5px;
-}
-article.cronometro header .subtitulo{
-    font-weight: 300;
-    font-size: 0.8em;
-}
-
-article.cronometro .tempo{
-    font-size: 30px;
-    margin-bottom: 30px;
-}
-
-article.cronometro .botoes button{
-    cursor: pointer;
-    padding: 10px 10px;
-    background-color: #3a3a3a;
-    color: white;
-    border: 1px #212121 solid;
-    border-radius: 4px;
-}
-
-article.adicionar.cronometro{
-    cursor: pointer;
-    width: 100px;
-    height: 100px;
-    padding: 0;
-    display: flex;
+.theme-toggle {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-dim);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-article.adicionar h2{
-    font-size: 3em;
-    font-weight: 100;
+.theme-toggle:hover {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-color: var(--color-border-muted);
+}
+.theme-icon { display: block; }
+.theme-icon-sun { display: none; }
+[data-theme="dark"] .theme-icon-moon { display: none; }
+[data-theme="dark"] .theme-icon-sun  { display: block; }
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.cronometros {
+    max-width: 64rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 6rem;
+}
+
+.hero { margin-bottom: 3rem; }
+
+.font-mono-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    font-weight: 500;
+}
+
+.hero h1 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 1rem 0 1.5rem;
+}
+
+.hero .lede {
+    max-width: 38rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+.hero .lede code {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    color: var(--color-bordo);
+}
+
+
+/* =========================================================
+   GRID DE CRONÔMETROS
+   ========================================================= */
+.cronometros-grupo {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1.25rem;
+}
+
+
+/* =========================================================
+   CARD DO CRONÔMETRO
+   ========================================================= */
+article.cronometro {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 1.5rem 1.5rem 1.75rem;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+article.cronometro:not(.adicionar):hover {
+    border-color: var(--color-border-muted);
+}
+
+/* Estado "rodando" — borda verde sutil + pulse no relógio */
+article.cronometro.em-execucao {
+    border-color: var(--color-running);
+}
+article.cronometro.em-execucao .tempo span {
+    color: var(--color-running);
+    animation: pulse-tempo 1s ease-in-out infinite;
+}
+@keyframes pulse-tempo {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.65; }
+}
+
+/* Estado "terminado" — flash bordô por 4s */
+article.cronometro.terminado {
+    border-color: var(--color-bordo);
+    animation: flash-terminado 0.5s ease-in-out 4;
+}
+@keyframes flash-terminado {
+    0%, 100% { background: var(--color-surface); }
+    50%      { background: var(--color-bordo); color: var(--color-bg); }
+}
+article.cronometro.terminado .tempo span { color: var(--color-bordo); }
+
+
+/* Botão excluir (X no canto sup. direito) */
+article.cronometro .excluir {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: var(--color-text-dim);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+}
+article.cronometro .excluir:hover {
+    background: var(--color-surface-2);
+    color: var(--color-bordo);
+}
+
+
+/* Título + ícone de editar */
+article.cronometro header { margin-bottom: 1.25rem; padding-right: 32px; }
+
+article.cronometro .titulo h2 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.375rem;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: var(--color-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+article.cronometro .titulo input[type="text"] {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.375rem;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1px solid var(--color-bordo);
+    border-radius: 6px;
+    padding: 4px 8px;
+    width: 100%;
+    max-width: 14rem;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(92, 31, 31, 0.12);
+}
+
+.btn-editar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-dim);
+    font-size: 0.875rem;
+    padding: 2px 4px;
+    transition: color 0.15s;
+}
+.btn-editar:hover { color: var(--color-bordo); }
+
+
+/* Subtítulo "Código: XXX-XXX-XXX" */
+article.cronometro .subtitulo {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+    margin-top: 0.375rem;
+}
+
+
+/* Display do tempo (números monoespaçados) */
+article.cronometro .tempo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+article.cronometro .tempo span {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 3rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums; /* dígitos do mesmo tamanho — números não pulam */
+    transition: color 0.3s;
+}
+article.cronometro .tempo input[type="text"] {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 2.25rem;
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: 1px solid var(--color-bordo);
+    border-radius: 6px;
+    padding: 4px 10px;
+    width: 100%;
+    max-width: 9rem;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(92, 31, 31, 0.12);
+}
+
+
+/* Botões iniciar / pausar / zerar */
+article.cronometro .botoes {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+article.cronometro .botoes button {
+    flex: 1;
+    min-width: 4.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    border: 1px solid var(--color-border-muted);
+    background: transparent;
+    color: var(--color-text-muted);
+    transition: all 0.15s;
+}
+article.cronometro .botoes .iniciar {
+    background: var(--color-bordo);
+    border-color: var(--color-bordo);
+    color: var(--color-bg);
+}
+article.cronometro .botoes .iniciar:hover {
+    background: var(--color-bordo-soft);
+    border-color: var(--color-bordo-soft);
+    transform: translateY(-1px);
+}
+article.cronometro .botoes .pausar:hover,
+article.cronometro .botoes .zerar:hover {
+    border-color: var(--color-text);
+    color: var(--color-text);
+    background: var(--color-surface-2);
+}
+
+
+/* =========================================================
+   CARD "ADICIONAR" (+)
+   ========================================================= */
+article.cronometro.adicionar {
+    cursor: pointer;
+    border-style: dashed;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 14rem;
+    gap: 0.5rem;
+    transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+article.cronometro.adicionar:hover,
+article.cronometro.adicionar:focus-visible {
+    border-color: var(--color-bordo);
+    background: var(--color-surface);
+}
+.adicionar-icone {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--color-bordo);
+}
+.adicionar-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+@media (max-width: 640px) {
+    .site-header { padding: 1rem 1.25rem; }
+    .cronometros { padding: 1rem 1.25rem 4rem; }
+    .hero { margin-bottom: 2rem; }
+    .cronometros-grupo { grid-template-columns: 1fr; }
+    article.cronometro .tempo span { font-size: 2.5rem; }
+}
+@media (max-width: 420px) {
+    .back-link-text { display: none; }
+    .back-link { padding: 0.5rem; }
 }
