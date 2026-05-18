@@ -1,7 +1,7 @@
-# Cronos — Central de cronômetros multi-dispositivo
+# LabClock — Central de cronômetros multi-dispositivo
 
 **Status:** Em planejamento — 2026-05-18.
-**Codename:** `cronos` (a definir nome final).
+**Codename:** `labclock` (a definir nome final).
 **Origem:** dor real vivida pelo Nicchon como técnico químico. Hoje é projeto pessoal/portfólio — se laboratórios reais quiserem adotar, melhor.
 
 ---
@@ -17,7 +17,7 @@ Nicchon é técnico em laboratório. Tem 3 ensaios paralelos em 3 salas diferent
 - Estar fisicamente perto pra ouvir o alarme
 - Não pode sair pra outra coisa
 
-Com o Cronos:
+Com o LabClock:
 - Cria 3 cronômetros (1 por sala), cada um numa **TV da sala** correspondente
 - Cria grupo "**Cron do Nicchon**" agregando os 3
 - Abre esse grupo no **celular** — vê os 3 timers ao vivo, em qualquer lugar
@@ -70,7 +70,7 @@ Transições válidas: `PARADO ↔ RODANDO`, `RODANDO → PAUSADO ↔ RODANDO`, 
 | **Beep mobile bg** | Service Worker + Web Push (VAPID) | Pra notificar quando celular está com tela bloqueada |
 | **Persistência local** | localStorage pra cache + reidratação após F5 | Continua funcionando offline pra leitura |
 | **Hosting** | Hostgator shared | Subdomínio `cron.nicchon.com` (ou outro) |
-| **DB** | Compartilhado ou isolado | A decidir: usar `niccho25_portfolio` existente ou criar `niccho25_cronos` |
+| **DB** | Compartilhado ou isolado | A decidir: usar `niccho25_portfolio` existente ou criar `niccho25_app_nicchon` |
 
 ### Por que polling funciona
 
@@ -357,17 +357,17 @@ Cada fase entrega valor sozinha. Pode parar em qualquer uma se mudar de priorida
 
 ---
 
-## 9. Decisões abertas
+## 9. Decisões tomadas (2026-05-18)
 
-| # | Decisão | Opções |
-|---|---|---|
-| D1 | Nome do produto | "Cronos", "Tikker", "LabClock", "ChemTimer", "Tempero", outro |
-| D2 | Domínio | `cron.nicchon.com` / `cronos.nicchon.com` / domínio próprio (`cronos.tools`?) |
-| D3 | Banco MySQL | Compartilhar `niccho25_portfolio` (mesmo do app.nicchon.com) ou criar `niccho25_cronos` isolado |
-| D4 | Repo GitHub | `nicchonsanchez/cronos` (novo repo) ou subpasta do `nicchonsanchez/projetos` |
-| D5 | Auth: SSO com painel nicchon.com? | Stand-alone (login próprio) ou compartilhar session do painel principal |
-| D6 | Listar como projeto no portfólio nicchon.com | Sim desde início (mesmo MVP), ou só quando entrar fase 3+ |
-| D7 | Frontend: SPA ou multi-page PHP? | SPA jQuery (igual MVP) ou PHP renderiza páginas + jQuery pra interação |
+| D# | Decisão final |
+|---|---|
+| D1 nome | **LabClock** |
+| D2 domínio | `app.nicchon.com/labclock/` (sub-deploy) |
+| D3 banco | `niccho25_app_nicchon` (isolado do painel) — já criado, com tabela `app_links` migrada como prova-de-conceito |
+| D4 repo | Repo próprio `nicchonsanchez/labclock` |
+| D5 auth | Standalone (cron_usuarios + PHP session + PBKDF2 600k) |
+| D6 portfólio | Adicionar só na fase 7 |
+| D7 frontend | HTML + jQuery + Vanilla JS (coerente com app.nicchon.com) |
 
 ---
 
@@ -408,4 +408,4 @@ Coisas que vão aparecer como "decisões interessantes" no case study:
 - [ ] Cronômetros tem dono explícito
 - [ ] Cronômetro só edita por dono ou admin do lab
 
-### Demais fases — critérios serão detalhados em sub-arquivos `tarefas-md/cronos-fase-X.md` quando começarmos cada uma.
+### Demais fases — critérios serão detalhados em sub-arquivos `tarefas-md/labclock-fase-X.md` quando começarmos cada uma.

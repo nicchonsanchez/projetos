@@ -135,8 +135,8 @@ Push em `main` dispara o workflow `.github/workflows/deploy-app-nicchon.yml`:
 | `FTP_USER` | usuário do cPanel |
 | `FTP_PASS` | senha FTP |
 | `DB_HOST` | `localhost` |
-| `DB_NAME` | `niccho25_portfolio` |
-| `DB_USER` | usuário MySQL |
+| `DB_NAME` | `niccho25_app_nicchon` (banco isolado do ecossistema app.nicchon.com) |
+| `DB_USER` | usuário MySQL do `niccho25_app_nicchon` |
 | `DB_PASS` | senha MySQL |
 | `APP_LINKS_ADMIN_TOKEN` | bearer token pro CRUD de links |
 
@@ -144,7 +144,9 @@ Push em `main` dispara o workflow `.github/workflows/deploy-app-nicchon.yml`:
 
 ## Banco
 
-Tabela `app_links` no MySQL `niccho25_portfolio` (compartilhado com nicchon.com). Schema em [`app/api/schema.sql`](app/api/schema.sql).
+Tabela `app_links` no MySQL **`niccho25_app_nicchon`** (banco isolado do ecossistema app.nicchon.com — separado do `niccho25_portfolio` que tem dados sensíveis do painel nicchon.com). Schema em [`app/api/schema.sql`](app/api/schema.sql).
+
+Decisão de segurança (2026-05-18): SQL injection numa página do `app.nicchon.com` não atinge cofre/cartões do painel principal. Cada ecossistema tem banco próprio.
 
 Pra cadastrar um link externo novo via API:
 
