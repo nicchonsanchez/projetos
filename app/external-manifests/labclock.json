@@ -1,0 +1,13 @@
+{
+  "slug": "labclock",
+  "titulo": "LabClock",
+  "categoria": "Sistema",
+  "ano": "2026",
+  "status": "Em desenvolvimento",
+  "descricao": "Central de cronômetros multi-dispositivo. Pensada pra laboratório químico (ensaios paralelos em salas diferentes), mas aplicável a qualquer contexto com múltiplos tempos críticos.",
+  "url": "/labclock/",
+  "repoUrl": "https://github.com/nicchonsanchez/labclock",
+  "deploy_proprio": true,
+  "ordem": 15,
+  "notas": "Sub-deploy: codigo em github.com/nicchonsanchez/labclock, workflow proprio entrega em /app.nicchon.com/labclock/. Banco compartilhado niccho25_app_nicchon (tabela labclock_cronometros)."
+}
