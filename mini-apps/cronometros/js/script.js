@@ -57,7 +57,7 @@ function criarCronometro(nome, tempo, idExistente){
                     <input type="text" name="novoNome" value="${escapar(nome)}" hidden>
                     <h2>
                         <span>${escapar(nome)}</span>
-                        <button type="button" class="btn-editar fa fa-pencil-square-o" data-acao="editarNome" data-id="${id}" aria-label="Editar nome"></button>
+                        <button type="button" class="btn-editar" data-acao="editarNome" data-id="${id}" aria-label="Editar nome"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
                     </h2>
                 </div>
                 <!-- /.titulo -->
@@ -68,7 +68,7 @@ function criarCronometro(nome, tempo, idExistente){
                 <div class="tempo">
                     <input type="text" name="novoTempo" value="${formatarTempo(tempo)}" hidden>
                     <span>${formatarTempo(tempo)}</span>
-                    <button type="button" class="btn-editar fa fa-pencil-square-o" data-acao="editarTempo" data-id="${id}" aria-label="Editar tempo"></button>
+                    <button type="button" class="btn-editar" data-acao="editarTempo" data-id="${id}" aria-label="Editar tempo"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
                 </div>
                 <!-- /.tempo -->
                 <div class="botoes">
