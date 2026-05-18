@@ -74,7 +74,7 @@ function criarCronometro(nome, tempo, idExistente){
                 <div class="botoes">
                     <button type="button" data-acao="iniciar" data-id="${id}" class="iniciar">Iniciar</button>
                     <button type="button" data-acao="parar"   data-id="${id}" class="pausar">Pausar</button>
-                    <button type="button" data-acao="zerar"   data-id="${id}" class="zerar">Zerar</button>
+                    <button type="button" data-acao="zerar"   data-id="${id}" class="zerar">Resetar</button>
                 </div>
                 <!-- /.botoes -->
             </section>
@@ -102,6 +102,8 @@ function gerarID(){
 */
 
 // Inicia a contagem regressiva. Se já estiver rodando, ignora (não duplica).
+// Quando chega a 0 dispara o beep UMA vez e continua decrementando em valores
+// negativos — o usuário vê quanto tempo atrasou pra resetar (ex: -02:34).
 function iniciar(id){
     var c = listaCronometros[id];
     if (!c || c.emExecucao) return;
@@ -110,13 +112,14 @@ function iniciar(id){
     $(`#${id}`).addClass('em-execucao').removeClass('terminado');
 
     c.intervalRef = setInterval(function () {
-        if (c.tempoAtual > 0) {
-            c.tempoAtual--;
-            atualizarCronometro(id, c.tempoAtual);
-        } else {
-            // Chegou a 0 — para o intervalo e dispara aviso (beep + flash visual)
-            parar(id);
+        c.tempoAtual--;
+        atualizarCronometro(id, c.tempoAtual);
+        if (c.tempoAtual === 0) {
+            // Cruzou zero exatamente agora — beep + flash visual (1 vez só)
             avisarFim(id);
+        } else if (c.tempoAtual < 0) {
+            // Já passou do zero — marca como atrasado (cor permanente)
+            $(`#${id}`).addClass('atrasado');
         }
     }, 1000);
 }
@@ -131,14 +134,14 @@ function parar(id){
     $(`#${id}`).removeClass('em-execucao');
 }
 
-// Para e volta ao tempo original
+// Para e volta ao tempo original (mesmo se estiver atrasado em valores negativos)
 function zerar(id){
     var c = listaCronometros[id];
     if (!c) return;
     parar(id);
     c.tempoAtual = c.tempo;
     atualizarCronometro(id, c.tempo);
-    $(`#${id}`).removeClass('terminado');
+    $(`#${id}`).removeClass('terminado atrasado');
 }
 
 // Remove o cronômetro de vez (lista + DOM + storage)
@@ -216,16 +219,19 @@ function editarTempo(id){
     FORMATAÇÃO DE TEMPO
 */
 
-// segundos → "MM:SS" (ou "H:MM:SS" se >= 1 hora)
+// segundos → "MM:SS" (ou "H:MM:SS" se >= 1 hora).
+// Aceita valores negativos pra indicar "atrasou X" (ex: -02:34).
 function formatarTempo(segundos){
-    segundos = Math.max(0, Math.floor(segundos));
+    var negativo = segundos < 0;
+    segundos = Math.abs(Math.floor(segundos));
     var h = Math.floor(segundos / 3600);
     var m = Math.floor((segundos % 3600) / 60);
     var s = segundos % 60;
     var mm = m.toString().padStart(2, '0');
     var ss = s.toString().padStart(2, '0');
-    if (h > 0) return h + ':' + mm + ':' + ss;
-    return mm + ':' + ss;
+    var sinal = negativo ? '-' : '';
+    if (h > 0) return sinal + h + ':' + mm + ':' + ss;
+    return sinal + mm + ':' + ss;
 }
 
 // "5:30", "1:30:00" ou "300" → total em segundos

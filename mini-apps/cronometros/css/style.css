@@ -211,7 +211,7 @@ article.cronometro.em-execucao .tempo span {
     50%      { opacity: 0.65; }
 }
 
-/* Estado "terminado" — flash bordô por 4s */
+/* Estado "terminado" — flash bordô (1x quando cruza o 0) */
 article.cronometro.terminado {
     border-color: var(--color-bordo);
     animation: flash-terminado 0.5s ease-in-out 4;
@@ -221,6 +221,16 @@ article.cronometro.terminado {
     50%      { background: var(--color-bordo); color: var(--color-bg); }
 }
 article.cronometro.terminado .tempo span { color: var(--color-bordo); }
+
+/* Estado "atrasado" — cor bordô PERMANENTE enquanto rodando em negativo.
+   Sobrescreve o verde do .em-execucao porque é mais urgente. */
+article.cronometro.atrasado {
+    border-color: var(--color-bordo);
+}
+article.cronometro.atrasado .tempo span {
+    color: var(--color-bordo);
+    animation: none; /* tira o pulse do em-execucao — atraso usa cor estática pra leitura clara */
+}
 
 
 /* Botão excluir (X no canto sup. direito) */
