@@ -108,7 +108,12 @@ if (!empty($orphans)) {
     header('X-App-Orphans: ' . implode(', ', $orphans));
 }
 
-// Ordenação: declarados primeiro (status > ano desc > titulo asc), órfãos no fim
+// Ordenação:
+//   1) Órfãos vão pro fim (não embaralham com declarados)
+//   2) Campo `ordem` (asc) — curadoria manual no manifest
+//   3) Status (desempate: Em produção > Concluído > ...)
+//   4) Ano desc (desempate)
+//   5) Título asc (desempate final)
 $statusOrder = [
     'Em produção' => 0,
     'Concluído' => 1,
@@ -120,6 +125,10 @@ usort($results, function ($a, $b) use ($statusOrder) {
     $oa = ($a['_orphan'] ?? false) ? 1 : 0;
     $ob = ($b['_orphan'] ?? false) ? 1 : 0;
     if ($oa !== $ob) return $oa - $ob;
+    // `ordem` ausente vira 9999 (fim da fila)
+    $ord_a = isset($a['ordem']) ? (int)$a['ordem'] : 9999;
+    $ord_b = isset($b['ordem']) ? (int)$b['ordem'] : 9999;
+    if ($ord_a !== $ord_b) return $ord_a - $ord_b;
     $sa = $statusOrder[$a['status'] ?? ''] ?? 4;
     $sb = $statusOrder[$b['status'] ?? ''] ?? 4;
     if ($sa !== $sb) return $sa - $sb;

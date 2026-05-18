@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2025",
   "status": "Concluído",
-  "descricao": "Projeto prático da Rocketseat: formulário de matrícula/inscrição com validação no front."
+  "descricao": "Projeto prático da Rocketseat: formulário de matrícula/inscrição com validação no front.",
+  "ordem": 90
 }

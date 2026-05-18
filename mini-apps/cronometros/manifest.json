@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2024",
   "status": "Concluído",
-  "descricao": "Cronômetro e timer em JavaScript puro. Estudo de setInterval, formatação de tempo e controle de estado."
+  "descricao": "Cronômetro e timer em JavaScript puro. Estudo de setInterval, formatação de tempo e controle de estado.",
+  "ordem": 120
 }

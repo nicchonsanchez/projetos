@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2024",
   "status": "Concluído",
-  "descricao": "Projeto prático do curso de Front-End — exercitando classes utilitárias e grid do Bootstrap 5."
+  "descricao": "Projeto prático do curso de Front-End — exercitando classes utilitárias e grid do Bootstrap 5.",
+  "ordem": 160
 }

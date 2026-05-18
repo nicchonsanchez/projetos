@@ -8,5 +8,6 @@
   "url": "/convite-naty/",
   "repoUrl": "https://github.com/nicchonsanchez/convite-aniversario-naty",
   "deploy_proprio": true,
-  "notas": "Sub-deploy: o código vive em github.com/nicchonsanchez/convite-aniversario-naty e o workflow daquele repo faz upload direto pra /app.nicchon.com/convite-naty/. Esta manifest declara a existência pro agregador."
+  "notas": "Sub-deploy: o código vive em github.com/nicchonsanchez/convite-aniversario-naty e o workflow daquele repo faz upload direto pra /app.nicchon.com/convite-naty/. Esta manifest declara a existência pro agregador.",
+  "ordem": 10
 }

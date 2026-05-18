@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2024",
   "status": "Concluído",
-  "descricao": "Conteúdo didático sobre sistemas operacionais em formato de página HTML."
+  "descricao": "Conteúdo didático sobre sistemas operacionais em formato de página HTML.",
+  "ordem": 200
 }

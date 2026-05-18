@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2024",
   "status": "Concluído",
-  "descricao": "Projeto prático do curso de Front-End — exercitando componentes Material Design via Materialize CSS."
+  "descricao": "Projeto prático do curso de Front-End — exercitando componentes Material Design via Materialize CSS.",
+  "ordem": 170
 }

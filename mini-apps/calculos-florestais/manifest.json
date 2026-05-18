@@ -4,5 +4,6 @@
   "categoria": "Estudo técnico",
   "ano": "2024",
   "status": "Em produção",
-  "descricao": "Três calculadoras pra manejo florestal: volume de árvores isoladas, cilindro e pilha de lenha. Feita pra madeireiro real."
+  "descricao": "Três calculadoras pra manejo florestal: volume de árvores isoladas, cilindro e pilha de lenha. Feita pra madeireiro real.",
+  "ordem": 20
 }
