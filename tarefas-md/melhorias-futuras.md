@@ -101,6 +101,39 @@ Cores discretas, ainda na paleta v2026. Não vira pixel-art.
 
 **Esforço:** 1h-1h30 (download fonts é o mais demorado).
 
+#### 16. Painel híbrido de gerenciamento dos mini-apps embutidos
+
+**Problema:** hoje pra mudar ordem, título, descrição ou cover de um mini-app, é preciso editar `mini-apps/{slug}/manifest.json` + push. Fricção pequena com 22 items, mas vira incômodo se a coleção crescer.
+
+**Não-solução (B no chat 2026-05-17):** migrar tudo pro DB. Cria armadilha de divergência (deletar pasta = mini-app fantasma; adicionar via Git não aparece).
+
+**Solução:** painel `/painel/app-meta.php` com modelo **híbrido**.
+- Manifest do Git continua sendo a **fonte base** (slug, URL imutável).
+- Tabela MySQL `app_meta` permite **override opcional** de campos editáveis (ordem, descricao_alt, cover_url, oculto).
+- `projects.php` faz merge: lê manifest → aplica overrides do DB se existir pro slug → retorna.
+- Fallback gracioso: se DB falhar, app ainda funciona com valores do manifest puro.
+
+**Schema sugerido:**
+```sql
+CREATE TABLE app_meta (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  slug VARCHAR(64) NOT NULL UNIQUE,
+  ordem INT NULL,
+  titulo_alt VARCHAR(120) NULL,
+  descricao_alt VARCHAR(240) NULL,
+  cover_url TEXT NULL,
+  oculto TINYINT(1) NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_slug (slug)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+```
+
+**Quando fazer:** quando o app passar de ~50 mini-apps OU quando precisar delegar admin pra outra pessoa OU quando frequência de ajuste de ordem/descrição passar de 1x/semana.
+
+**Esforço:** ~2h (tabela + página painel + lógica de merge no `projects.php`).
+
+---
+
 #### 15. Atualizar `tarefas-md/app-nicchon-reformulacao.md`
 
 **Problema:** doc viva, mas o que documentei lá divergiu do que entregamos (cover_url, filtros, hub florestais, etc. não estavam no plano).
