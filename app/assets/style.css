@@ -89,6 +89,31 @@ hr { border: 0; border-top: 1px solid var(--color-border); margin: 6rem 0 4rem; 
   color: var(--color-text-muted);
 }
 
+/* CTA do hero pro site principal nicchon.com */
+.hero-cta { margin-top: 1.75rem; }
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-bordo);
+  background: var(--color-bordo);
+  color: var(--color-bg);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  letter-spacing: 0.01em;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+.btn-hero svg { transition: transform 0.15s; }
+.btn-hero:hover {
+  background: transparent;
+  color: var(--color-bordo);
+  transform: translateY(-1px);
+}
+.btn-hero:hover svg { transform: translate(2px, -2px); }
+
 /* Header */
 .site-header {
   padding: 1.5rem 1.5rem;
