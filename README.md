@@ -297,3 +297,4 @@ RewriteRule ^old-slug(/.*)?$ /new-slug$1 [R=301,L]
 ## Plano de implementação completo
 
 Veja [`tarefas-md/app-nicchon-reformulacao.md`](tarefas-md/app-nicchon-reformulacao.md).
+
