@@ -11,6 +11,75 @@ Os itens 1-5 já foram entregues:
 
 ---
 
+## 🔥 ALTA PRIORIDADE — fazer logo após terminar o LabClock
+
+### 0. Auditoria funcional dos projetos internos do app.nicchon.com
+
+**Por que é prioritário:** já descobrimos 4 mini-apps quebrados em testes ad-hoc (calculadora simples deletada, cronômetros sem CSS, cronômetros com onclick CSP-bloqueado, jokenpo + sorteador com mesma classe de bug). **Outros podem estar quebrados em silêncio.** Cada mini-app é um cartão público do portfólio — um quebrado destrói a percepção geral.
+
+**Objetivo:** garantir que **TODOS** os mini-apps embutidos + sub-deploys do `app.nicchon.com` funcionam.
+
+**Escopo:**
+
+Pra cada uma das **19 entradas visíveis** no agregador + **1 sub-deploy** (`convite-naty`):
+
+1. **Abrir no browser** em desktop e mobile
+2. **Testar interação real** (não só HTTP 200): clicar nos botões, preencher forms, verificar resultados
+3. **Olhar Console DevTools** (F12) — qualquer erro CSP, 404, JS exception, mixed content
+4. **Documentar status** em planilha simples (slug | funciona? | nota)
+
+**Output esperado:** lista clara de:
+- 🟢 Funcionando
+- 🟡 Funciona mas com bug visual/UX menor
+- 🔴 Quebrado (não funciona ou erro grave)
+
+**Padrões de bug a procurar (baseados nos que já encontrei):**
+- `onclick=` inline → CSP bloqueia silenciosamente
+- jQuery/FontAwesome via CDN externo → bloqueado por `script-src 'self'`
+- CSS apontando pra arquivo inexistente (`../css/style.css` de hierarquia antiga)
+- Imagens com URL absoluta `http://` em vez de relativa
+- `theme-color` ainda apontando pra cor antiga (`#061e4e`, `#262626`)
+- Texto/identidade visual fora do padrão v2026 (Open Sans em vez de Inter, fundos escuros antigos)
+
+**Mini-apps a verificar (lista atual):**
+
+| Slug | Tipo | Última atenção |
+|---|---|---|
+| `botoes-coloridos` | Estudo | Nunca testei após reorg |
+| `calculos-florestais` | Hub | ✅ Testado e reestilizado |
+| `carrinho-de-compras` | Estudo | Nunca testei |
+| `covil-dos-mestres` | Site | Nunca testei (usa jQuery + jpgs) |
+| `cronometros` | Estudo | ✅ Refatorado fase 2026-05-17 |
+| `facebook-login` | Estudo | Nunca testei |
+| `formulario-convite-rocketseat` | Estudo | Nunca testei (Rocketseat 2025) |
+| `formulario-matricula-rocketseat` | Estudo | Nunca testei |
+| `jokenpo` | Jogos | ✅ Corrigido onclick CSP |
+| `landing-esboco` | Estudo | Nunca testei |
+| `login-signup` | Estudo | Nunca testei |
+| `lp-local-turistico-rocketseat` | Site | Nunca testei |
+| `odontologia` | Site | Nunca testei (PHP completo) |
+| `productrunt` | Site | Nunca testei depois reestilo |
+| `projeto-bootstrap` | Estudo | Nunca testei |
+| `projeto-materialize` | Estudo | Nunca testei |
+| `sistemas-operacionais` | Estudo | Nunca testei |
+| `sorteador-de-numeros` | Jogos | ✅ Corrigido onclick CSP |
+| `venda-de-carros` | Site | Nunca testei (PHP completo) |
+| `convite-naty` (sub-deploy) | Site | ✅ HTTP 200 + title checado |
+| Cálculos individuais (3 volumes ocultos) | Estudo | ✅ Reestilizados + dark mode |
+
+**~15 itens nunca testados em interação real.** Alta probabilidade de pelo menos 3-5 estarem com algum bug similar.
+
+**Plano sugerido pra atacar:**
+
+1. **Sweep automatizado**: script Python varre os HTMLs deployados + grep por padrões problemáticos (`onclick=`, `cdn.jsdelivr`, `cdnjs.cloudflare`, `googleapis.com/ajax/libs`, `http://` em assets, `#262626` em `theme-color`, fontes Open Sans, etc.)
+2. **Lista priorizada de fixes** baseada no sweep
+3. **Atacar em lote** (1 dia focado): fixes pequenos rápidos primeiro, casos complexos depois
+4. **Decisão sobre legados sem valor**: alguns mini-apps são exercícios triviais de 2024 (botoes-coloridos, sistemas-operacionais). Se não vale consertar, decidir entre arquivar OU manter como "Arquivado" com badge claro.
+
+**Esforço:** 1 dia focado (4-6h). Vale o investimento — portfólio é cara da casa.
+
+---
+
 ## Pendências priorizadas
 
 ### Polish visual (pega depois)
