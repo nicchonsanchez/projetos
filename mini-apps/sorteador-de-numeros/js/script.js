@@ -67,3 +67,9 @@ function sortearNovamente(){
     form.classList.remove('display-none');
     resultSection.classList.add('display-none');
 }
+
+// CSP-compliant: listener no botão "Sortear novamente" (CSP do app.nicchon.com proíbe inline onclick)
+document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('btn-sortear-novamente');
+    if (btn) btn.addEventListener('click', sortearNovamente);
+});

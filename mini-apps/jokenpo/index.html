@@ -195,7 +195,7 @@
             <ul>
                 <a href="#1jogador"><li>1 Jogador</li></a>
                 <a href="#2jogadores"><li>2 Jogadores</li></a>
-                <a onclick="reiniciar()" href="#"><li class="reiniciar">Reiniciar jogo</li></a>
+                <a id="btn-reiniciar" href="#"><li class="reiniciar">Reiniciar jogo</li></a>
             </ul>
         </nav>
     </header>
@@ -396,6 +396,8 @@
             $('#jogo .jogador .option').find('img').css('opacity',0.2);
             alert("Jogo reiniciado!")
         }
+        // CSP-compliant: listener no botão "Reiniciar jogo" (no menu)
+        $('#btn-reiniciar').on('click', function(e){ e.preventDefault(); reiniciar(); });
 
         /*
             Jogando contra outro jogador
